@@ -1,0 +1,80 @@
+/* Heade
+
+.alert{
+    margin-bottom: 0 !important;
+    width: 100vw;
+}
+
+/******************* PHP   */
+body {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+#navbar-svg {
+    position: absolute;
+}
+
+.page-header {
+    position: absolute;
+    right: 30px;
+    top: 130px;
+    font-family: 'VT323', monospace;
+    color: #fca349;
+    font-size: 50px;
+}
+
+.navbar {
+    padding-top: 260px;
+    background-color: rgb(25, 98, 255);
+    width: 100%;
+    height: 40px;
+    font-family: 'VT323', monospace;
+    font-size: 25px;
+}
+
+.navbar-links {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    /* height: 40px; */
+    align-items: center;
+
+}
+
+.navbar-item {
+    padding: 10px;
+    height: 20px;
+
+}
+
+.navbar-item:hover {
+    background-color: grey;
+}
+
+.navbar-links a {
+    height: 100%;
+
+    color: #fca349;
+    text-decoration: none;
+}
+
+#navbar-plants {
+    /* Relative to the plant link in the navbar */
+    position: relative;
+}
+
+rect {
+    fill: #fca349;
+}
+
+.right-links {
+    position: absolute;
+    right: 10px;
+}
+
+#signed-in-text {
+    color: greenyellow;
+}
