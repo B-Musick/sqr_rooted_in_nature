@@ -1,0 +1,23 @@
+<% include ../partials/header %>
+    <div class="plant-box-container">
+        <!-- Go through each plant from the database and apply the box to them -->
+        <% plants.forEach(function(plant){ %>
+            <div class="plant-card-container">
+                <img alt="<%=plant.genus%> <%=plant.species%> Image" class="plant-card-img-top" src="<%=plant.image%>">
+                <div class="plant-card-body">
+                    <h6 class="card-title">
+                        <%=plant.genus%>
+                            <%=plant.species%>
+                    </h6>
+                    <p style="font-size: 12px;" class="card-title">
+                        <%=plant.commonName%>
+                    </p>
+                    <a href="/plants/<%=plant._id%>" class="read-more-button">READ MORE</a>
+                </div>
+            </div>
+            <% }); %>
+    </div>
+
+    <a href="/plants/new" class="add-blog">
+        <h5>ADD PLANT</h5>
+    </a>

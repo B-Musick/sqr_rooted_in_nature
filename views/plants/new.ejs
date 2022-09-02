@@ -1,0 +1,54 @@
+<% include ../partials/header %>
+    <div class="form-page">
+        <a class="back-button" href="/plants/">BACK</a>
+        <div class="form-container">
+            <form action="/plants" method="POST">
+                <div class="form-title-container form-item">
+                    <h2>Create New Plant</h2>
+                </div>
+                <!-- Need to change it so name="plant[genus]" for all -->
+                <div class="form-item new-plant-post-genus">
+                    <span class="form-item-title">Genus:</span>
+                    <span><input type="text" name="genus" placeholder="Genus"><br></span>
+                </div>
+                <div class="form-item">
+                    <span class="form-item-title">Species:</span>
+                    <span><input type="text" name="species" placeholder="Species"><br></span>
+                </div>
+                <div class="form-item">
+                    <span class="form-item-title">Common Name:</span>
+                    <span><input type="text" name="commonName" placeholder="Common Name"><br></span>
+                </div>
+                <div class="form-item">
+                    <span class="form-item-title">Family Name:</span>
+                    <span><input type="text" name="family" placeholder="Family Name"><br></span>
+                </div>
+                <div class="form-item">
+                    <span class="form-item-title">Sepal Count:</span>
+                    <span><input type="text" name="sepals" placeholder="Sepals"><br></span>
+                </div>
+                <div class="form-item">
+                    <span class="form-item-title">Pedal Count:</span>
+                    <span><input type="text" name="pedals" placeholder="Pedals"><br></span>
+                </div>
+                <div class="form-item">
+                    <span class="form-item-title">Stamen Count:</span>
+                    <span><input type="text" name="stamens" placeholder="Stamens"><br></span>
+                </div>
+                <div class="form-item">
+                    <span class="form-item-title">Carpel Count:</span>
+                    <span><input type="text" name="carpels" placeholder="Carpels"><br></span>
+                </div>
+                <div class="form-item">
+                    <span class="form-item-title">Description:</span>
+                    <span><textarea class="form-control" id="formBody" name="description">Body</textarea><br></span>
+                </div>
+                <div class="form-item">
+                    <span class="form-item-title">Image Url (Imgur):</span>
+                    <span><input type="text" name="image" placeholder="Image URL"><br></span>
+                </div>
+                <input class="form-item" type="submit" name="submit" id="submit-button">
+            </form>
+        </div>
+    </div>
+    <% include ../partials/footer %>
