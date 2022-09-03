@@ -1,0 +1,66 @@
+<%- include('../partials/header') %>
+
+    <!-- Information about plant -->
+    <!-- Note that container-fluid fills the whole background while 'container' leavs some margein on the sides -->
+    <div class="show-page-container">
+        <a class="back-button" href="/plants/">BACK</a>
+        <div class="show-page-inner-container">
+            <div class="image-container">
+                <img class="image" src='<%= plant.image %>' alt="<%=plant.genus%> <%=plant.species%> Image">
+            </div>
+            <div class="content-container">
+
+                <h1 class="header content-item">
+                    <%=plant.genus%>
+                        <%=plant.species%> "<%=plant.commonName%>"
+                </h1>
+                <div class="content-value-container">
+                    <h4 class="content-item"><span style="font-weight: 800">Family:</span>
+                        <%=plant.family%>
+                    </h4>
+                    <h4 class="content-item"><span style="font-weight: 800">Floral Formula:</span>
+                        K<sup>
+                            <%=plant.sepals%>
+                        </sup>C<sup>
+                            <%=plant.pedals%>
+                        </sup>A<sup>
+                            <%=plant.stamens%>
+                        </sup>G<sup>
+                            <%=plant.carpels%>
+                        </sup>
+                    </h4>
+                </div>
+                <h4 class="content-item">Description</h4>
+                <p class="content-item">
+                    <%-plant.description%>
+                </p>
+                <p class="content-item" style="text-align: end;font-size: small;"><em
+                        style="font-weight: 700;">Submitted by:</em>
+                    <!--  -->
+                </p>
+            </div>
+
+            <div class="comments-container">
+                <div class="post-comment-button-container">
+                    <div class="edit-delete-buttons-container">
+
+                    </div>
+                </div>
+                <!-- Print out the comments made by the users by looping through array of comment objects -->
+                <h5>COMMENTS</h5>
+                
+                    <div class="comments-container">
+                        <div class="comment-row">
+                            <div class="comment-column-left">
+                     
+                            </div>
+                            <div class="comment-column-right">
+               
+                            </div>
+                        </div>
+                    </div>
+                 
+            </div>
+        </div>
+    </div>
+<%- include('../partials/footer') %>

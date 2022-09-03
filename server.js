@@ -6,7 +6,8 @@ var app = express();
 app.set('view engine', 'ejs');
 
 // 5. Import the routes
-var indexRoutes = require('./routes/index');
+var indexRoutes = require('./routes/index'),
+    plantRoutes = require('./routes/plants');
 
 // IMPORT SEED
 var plantSeedDB = require('./plantSeed.js');
@@ -14,8 +15,14 @@ var plantSeedDB = require('./plantSeed.js');
 // PREVENTS ANY BACKLASH FROM DIRECTORY CHANGES
 app.use(express.static(__dirname + "/public"));
 
+// 12. - Takes request body and parses into JS object which will give the input ‘name’ attribute a value which is input by the user. (used to get form body)
+// Make sure it is the first above all other app.use methods, otherwise it wont allow creation of schema
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+
 // Integrate the routes
 app.use('/', indexRoutes);
+app.use('/plants', plantRoutes);
 
 var mongoose = require('mongoose');
 

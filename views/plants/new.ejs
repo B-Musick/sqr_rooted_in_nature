@@ -1,8 +1,9 @@
-<% include ../partials/header %>
+<%- include('../partials/header') %>
     <div class="form-page">
         <a class="back-button" href="/plants/">BACK</a>
         <div class="form-container">
             <form action="/plants" method="POST">
+                <!-- The form in ‘plants/new.ejs’ will send post request to ‘plants/index’ -->
                 <div class="form-title-container form-item">
                     <h2>Create New Plant</h2>
                 </div>
@@ -51,4 +52,4 @@
             </form>
         </div>
     </div>
-    <% include ../partials/footer %>
+<%- include('../partials/footer') %>
