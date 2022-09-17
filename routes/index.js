@@ -33,6 +33,29 @@ router.post('/register', (req, res) => {
             });
         }
     })
-})
+});
 
+// LOGIN SHOW ROUTE - Uses flash message error 
+router.get('/login', (req, res) => res.render('login'));
+
+/**
+ * LOGIN POST ROUTE
+ * 
+ * - To post data and make a login
+ * - Notice that for register things are done to create user in the post route before 
+ * authenticate is called. But in the login route, the user is presumed to exist already  */ 
+
+router.post('/login', passport.authenticate('local',
+    {
+        successRedirect: '/',
+        failureRedirect: '/login'
+    }
+), (req, res) => { });
+
+// LOGOUT ROUTE
+router.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/plants');
+
+});
 module.exports = router;
