@@ -48,17 +48,22 @@
                 </div>
                 <!-- Print out the comments made by the users by looping through array of comment objects -->
                 <h5>COMMENTS</h5>
-                
+                <% plant.comments.forEach((comment)=>{%>
                     <div class="comments-container">
+
                         <div class="comment-row">
                             <div class="comment-column-left">
-                     
+                                <h6><%=comment.user%></h6>
                             </div>
                             <div class="comment-column-right">
-               
+                                <p><%=comment.comment%></p>
                             </div>
                         </div>
                     </div>
+
+                <%});%>
+
+
                  
             </div>
         </div>

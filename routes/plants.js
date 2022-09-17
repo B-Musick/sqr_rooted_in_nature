@@ -3,7 +3,7 @@ var router = express.Router();
 
 // SCHEMA MODEL IMPORTS
 var Plant = require('../models/plant');
-var Comment = require('./models/comments');
+var Comment = require('../models/comment');
 
 // a. Set up index rout
 router.get('/index', (req, res) => {
@@ -54,9 +54,11 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-    Plant.findById(req.params.id, (err, showPlant) => {
+    // Populate then comments
+    Plant.findById(req.params.id).populate('comments').exec((err, showPlant) => {
         err ? console.log(err) : res.render('plants/show', { plant: showPlant });
-    })
+    });
 });
+
 
 module.exports = router;
