@@ -73,9 +73,13 @@
                     </div>
                 </div>
             <div class="right-links">
+            <%if(!currentUser){%>
                 <a href="/login" class="">Login</a>
                 <a href="/register" class="">Register</a>
-                <a href="/logout" class="">Logout</a>
+                <%}else{%>
+                    <a id="signed-in-text">Signed In As '<%=currentUser.username%>'</a>
+                    <a href="/logout" class="">Logout</a>
+                <%}%>
             </div>
 
 

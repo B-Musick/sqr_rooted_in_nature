@@ -4,8 +4,10 @@ var router = express.Router();
 var Plant = require('../models/plant');
 var Comment = require('../models/comment');
 
-// NEW ROUTE (plants/:id/comments/new)
-router.get('/plants/:id/comments/new',  (req, res) => {
+var middleware = require('../middleware');
+
+// NEW ROUTE (plants/:id/comments/new), middleware to check request is authenticated first
+router.get('/plants/:id/comments/new', middleware.isLoggedIn, (req, res) => {
     // Take the parameter :id and find the associated plant
     Plant.findById(req.params.id, (err, foundPlant) => {
         err ? console.log(err) : res.render('comments/new', { plant: foundPlant });
@@ -13,7 +15,7 @@ router.get('/plants/:id/comments/new',  (req, res) => {
 });
 
 // CREATE ROUTE (plants/:id/comments)
-router.post('/plants/:id/comments', (req, res) => {
+router.post('/plants/:id/comments', middleware.isLoggedIn,(req, res) => {
     Plant.findById(req.params.id, (err, plant) => {
         if (err) {
             console.log("Err post: " + err);

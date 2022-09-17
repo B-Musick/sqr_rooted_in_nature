@@ -49,9 +49,10 @@ router.post('/', (req, res) => {
  */
 router.get('/', (req, res) => {
     Plant.find({}, (err, foundPlants) => {
-        err ? console.log(err) : res.render('plants/index', { plants: foundPlants });
+        err ? console.log(err) : res.render('plants/index', { plants: foundPlants, currentUser: req.user });
     });
 });
+
 
 router.get('/:id', (req, res) => {
     // Populate then comments

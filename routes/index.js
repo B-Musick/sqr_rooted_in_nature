@@ -53,9 +53,10 @@ router.post('/login', passport.authenticate('local',
 ), (req, res) => { });
 
 // LOGOUT ROUTE
-router.get('/logout', function (req, res) {
-    req.logout();
-    res.redirect('/plants');
-
+router.get('/logout', (req, res)=> {
+    req.logout(function (err) {
+        if (err) { return next(err); }
+        res.redirect('/plants');
+    });
 });
 module.exports = router;

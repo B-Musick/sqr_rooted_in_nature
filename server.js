@@ -49,6 +49,13 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+// APPLY currentUser FROM PLANT INDEX ROUTE TO ALL ROUTES SINCE IN HEADER
+app.use(function (req, res, next) {
+    res.locals.currentUser = req.user;
+    // Set up locals for error and message
+    next(); // This moves to the next middleware route
+});
+
 // PREVENTS ANY BACKLASH FROM DIRECTORY CHANGES
 app.use(express.static(__dirname + "/public"));
 
