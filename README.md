@@ -15,3 +15,6 @@ nodemon server.js
 
 # Notes
 - Setting up a dynamic website
+
+# Things learned
+- Using mongoose to set up schema
