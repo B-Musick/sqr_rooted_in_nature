@@ -17,7 +17,6 @@ var indexRoutes = require('./routes/index'),
 var Plant = require('./models/plant');
 var Comment = require('./models/comment');
 var User = require('./models/user');
-var Blog = require('./models/blog');
 
 // IMPORT SEED
 var plantSeedDB = require('./plantSeed.js');
