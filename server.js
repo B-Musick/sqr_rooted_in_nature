@@ -7,7 +7,8 @@ app.set('view engine', 'ejs');
 
 // 5. Import the routes
 var indexRoutes = require('./routes/index'),
-    plantRoutes = require('./routes/plants');
+    plantRoutes = require('./routes/plants'),
+    commentRoutes = require('./routes/comments');
 
 // IMPORT SEED
 var plantSeedDB = require('./plantSeed.js');
@@ -23,6 +24,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Integrate the routes
 app.use('/', indexRoutes);
 app.use('/plants', plantRoutes);
+app.use('/', commentRoutes);
 
 var mongoose = require('mongoose');
 
