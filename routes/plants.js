@@ -3,6 +3,7 @@ var router = express.Router();
 
 // SCHEMA MODEL IMPORTS
 var Plant = require('../models/plant');
+var Comment = require('./models/comments');
 
 // a. Set up index rout
 router.get('/index', (req, res) => {
