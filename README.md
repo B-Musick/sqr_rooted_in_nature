@@ -19,3 +19,7 @@ nodemon server.js
 # Things learned
 - Using mongoose to set up schema
 - Setting up partials through ejs which can be reused on multiple pages
+
+# Update
+- Had to update the logout function
+https://stackoverflow.com/questions/72336177/error-reqlogout-requires-a-callback-function 

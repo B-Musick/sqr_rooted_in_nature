@@ -5,36 +5,40 @@ var router = express.Router();
 var Plant = require('../models/plant');
 var Comment = require('../models/comment');
 
+// IMPORT MIDDLEWARE
+var middleware = require('../middleware');
+
 // a. Set up index rout
 router.get('/index', (req, res) => {
     res.render('plants/index');
 });
 
 // NEW ROUTE (plants/new)
-router.get('/new',  (req, res) => {
+router.get('/new', middleware.isLoggedIn, (req, res) => {
     res.render('plants/new')
 });
 
-router.post('/', (req, res) => {
-    var newPlant = { genus: req.body.genus, species: req.body.species };
-    // Do something with the form data
-    // var newPlant = {
-    //     genus: req.body.genus,
-    //     species: req.body.species,
-    //     image: req.body.image,
-    //     author: author,
-    //     sepals: req.body.sepals,
-    //     pedals: req.body.pedals,
-    //     stamens: req.body.stamens,
-    //     carpels: req.body.carpels,
-    //     commonName: req.body.commonName,
-    //     description: req.body.description,
-    //     family: req.body.family
-    // };
+// CREATE ROUTE (/plants)
+router.post('/', middleware.isLoggedIn, (req, res) => {
+    var author = {
+        id: req.user._id,
+        username: req.user.username
+    };
+    var newPlant = {
+        genus: req.body.genus,
+        species: req.body.species,
+        image: req.body.image,
+        author: author, // Created author before this var
+        sepals: req.body.sepals,
+        pedals: req.body.pedals,
+        stamens: req.body.stamens,
+        carpels: req.body.carpels,
+        commonName: req.body.commonName,
+        description: req.body.description,
+        family: req.body.family
+    };
+
     Plant.create(newPlant, (err, plant) => {
-
-
-        // Then redirect to the plants/index page
         err ? console.log(err) : res.redirect('/plants');
     });
 });

@@ -1,5 +1,4 @@
 <%- include('../partials/header') %>
-
     <!-- Information about plant -->
     <!-- Note that container-fluid fills the whole background while 'container' leavs some margein on the sides -->
     <div class="show-page-container">
@@ -9,7 +8,7 @@
                 <img class="image" src='<%= plant.image %>' alt="<%=plant.genus%> <%=plant.species%> Image">
             </div>
             <div class="content-container">
-
+    
                 <h1 class="header content-item">
                     <%=plant.genus%>
                         <%=plant.species%> "<%=plant.commonName%>"
@@ -34,38 +33,61 @@
                 <p class="content-item">
                     <%-plant.description%>
                 </p>
-                <p class="content-item" style="text-align: end;font-size: small;"><em
-                        style="font-weight: 700;">Submitted by:</em>
-                    <!--  -->
+                <p class="content-item" style="text-align: end;font-size: small;"><em style="font-weight: 700;">Submitted
+                        by:</em>
+                    <%=plant.author.username %>
                 </p>
             </div>
-
+    
             <div class="comments-container">
                 <div class="post-comment-button-container">
                     <div class="edit-delete-buttons-container">
-                        <a href="/plants/<%=plant._id%>/comments/new" class="add-comment">NEW COMMENT</a>
-
+                        <% if(currentUser && plant.author.id.equals(currentUser._id)){ %>
+                            <!-- If own the plant -->
+                            <a class="comments-delete-button" href="/plants/<%=plant._id%>/edit">EDIT PLANT</a>
+                            <form action="/plants/<%=plant._id%>?_method=DELETE" method="POST">
+                                <input type="submit" class="comments-delete-button" value="DELETE PLANT">
+                            </form>
+                            <%};%>
+                                <% if(currentUser){ %>
+                                    <a href="/plants/<%=plant._id%>/comments/new" class="add-comment">NEW COMMENT</a>
+                                    <% } %>
                     </div>
                 </div>
                 <!-- Print out the comments made by the users by looping through array of comment objects -->
                 <h5>COMMENTS</h5>
                 <% plant.comments.forEach((comment)=>{%>
                     <div class="comments-container">
-
                         <div class="comment-row">
                             <div class="comment-column-left">
-                                <h6><%=comment.user%></h6>
+                                <h2><strong>
+                                        <%= comment.author.username %>
+                                    </strong></h2>
                             </div>
                             <div class="comment-column-right">
-                                <p><%=comment.comment%></p>
+                                <p>
+                                    <%=comment.date.toDateString()%>
+                                </p>
+                                <p>
+                                    <%=comment.comment%>
+                                </p>
+    
+                                <!-- EDIT and DELETE BUTTONS IF USER OWNS COMMENT -->
+                                <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                                    <div class="comments-edit-delete-button-container">
+                                        <a href="/plants/<%=plant._id%>/comments/<%=comment._id%>/edit"
+                                            class="comments-edit-button" style="background-color: rgb(117, 123, 130);">EDIT
+                                            COMMENT</a>
+                                        <form action="/plants/<%=plant._id%>/comments/<%=comment._id%>?_method=DELETE"
+                                            method="POST">
+                                            <input class="comments-delete-button" type="submit" value="DELETE COMMENT">
+                                        </form>
+                                    </div>
+                                    <% }; %>
                             </div>
                         </div>
                     </div>
-
-                <%});%>
-
-
-                 
+                    <% }); %>
             </div>
         </div>
     </div>

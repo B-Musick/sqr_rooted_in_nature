@@ -1,9 +1,12 @@
 // 1. Set up web application framework, will be used to create routes with Router
 var express = require('express'),
+    app = express(),
     passport = require('passport'),
-    LocalStrategy = require('passport-local');
-var app = express();
-
+    LocalStrategy = require('passport-local'),
+    mongoose = require('mongoose'),
+    
+    // METHOD-OVERRIDE - used to update and delete objects from database
+    methodOverride = require('method-override');
 
 // 2. Set up view engine, this will make it so you don’t need to add the file extension ‘.ejs’ to the files
 app.set('view engine', 'ejs');
@@ -69,7 +72,8 @@ app.use('/', indexRoutes);
 app.use('/plants', plantRoutes);
 app.use('/', commentRoutes);
 
-var mongoose = require('mongoose');
+// METHOD-OVERRIDE (update and delete from database)
+app.use(methodOverride('_method'));
 
 // Connect to the database running on port 27017
 mongoose.connect("mongodb://localhost:27017/rin_refactor"),{ useNewUrlParser: true }; 

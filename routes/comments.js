@@ -25,7 +25,11 @@ router.post('/plants/:id/comments', middleware.isLoggedIn,(req, res) => {
                 if (err) {
                     console.log(err);
                 } else {
-                    
+                    // Add username to comment
+                    comment.author.id = req.user._id;
+                    comment.author.username = req.user.username;
+
+                    // Save comment
                     comment.save();
                     plant.comments.push(comment);
 
