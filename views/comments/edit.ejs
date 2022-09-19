@@ -1,0 +1,18 @@
+<%- include('../partials/header') %>
+    <div class="form-page">
+        <a class="back-button" href="/plants/">BACK</a>
+        <div class="form-container">
+            <form action="/plants/<%= plant_id %>/comments/<%= comment._id %>?_method=PUT" method="POST">
+                <div class="form-title-container form-item">
+                    <h2>EDIT COMMENT</h2>
+                </div>
+                <!-- Need to change it so name="plant[genus]" for all -->
+                <div class="form-item" style="width:350px; ">
+                    <input type="text" name="comment[comment]" value="<%= comment.comment%>"
+                        style="width:100%;height: 100px;">
+                </div>
+                <input type="submit" name="submit" class="submit-button form-item">
+            </form>
+        </div>
+    </div>
+<%- include('../partials/footer') %>

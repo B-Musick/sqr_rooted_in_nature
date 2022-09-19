@@ -29,4 +29,26 @@ middlewareObj.checkPlantOwnership = (req, res, next) => {
         res.redirect('back');
     }
 }
+middlewareObj.checkCommentOwnership = (req, res, next) => {
+    // Is user logged in?
+    if (req.isAuthenticated()) {
+        Comment.findById(req.params.comment_id, function (err, foundComment) {
+            if (err || !foundComment) {
+                req.flash('error', 'Comment not found');
+                res.redirect('back');
+            } else {
+                // If the user ownss the comment
+                if (foundComment.author.id.equals(req.user._id)) {
+                    // Logged in users id (req.user._id)
+                    next();
+                } else {
+                    req.flash('error', 'You are not authorized to do that!');
+                    res.redirect('back');
+                }
+            }
+        });
+    } else {
+        res.redirect('back'); // Back to the page they were on
+    }
+};
 module.exports = middlewareObj
