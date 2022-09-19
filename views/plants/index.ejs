@@ -1,5 +1,4 @@
 <%- include('../partials/header') %>
-
     <div class="plant-box-container">
         <!-- Go through each plant from the database and apply the box to them -->
         <% plants.forEach(function(plant){ %>
@@ -13,14 +12,15 @@
                     <p style="font-size: 12px;" class="card-title">
                         <%=plant.commonName%>
                     </p>
-                    <a href="/plants/<%=plant._id%>" class="read-more-button">READ MORE</a>
+                    <a href="/plants/<%=plant._id%>" class="read-more-button">read more</a>
                 </div>
             </div>
             <% }); %>
     </div>
-
-    <a href="/plants/new" class="add-blog">
-        <h5>ADD PLANT</h5>
-    </a>
-
+    
+    <% if(currentUser){ %>
+        <a href="/plants/new" class="add-blog">
+            <h5>add plant</h5>
+        </a>
+    <% } %>
 <%- include('../partials/footer') %>

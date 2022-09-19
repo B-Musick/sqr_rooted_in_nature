@@ -1,0 +1,28 @@
+<%- include('../partials/header') %>
+    <div class="form-page">
+        <a class="back-button" href="/plants/">BACK</a>
+        <div class="form-container">
+            <form action="/plants/<%= plant._id %>?_method=PUT" method="POST">
+                <div class="form-title-container form-item">
+                    <h2>Edit Plant</h2>
+                </div>
+                <% let dbItems = ['genus','species','commonName','family','sepals','pedals','stamens','carpels','image']%>
+                <% dbItems.forEach(dbVal=>{%>
+                <% let value = plant[dbVal];%>
+                <div class="form-item">
+                    <span class="form-item-title"><%=dbVal[0].toUpperCase()%><%=dbVal.slice(1)%>:</span>
+                    <span><input type="text" name="plant[<%=dbVal%>]" value="<%= value%>"><br></span>
+                </div>
+                <% }) %>
+
+                <div class="form-item">
+                    <span class="form-item-title">Description:</span>
+                    <span><textarea class="form-control" id="formBody" name="description">Body</textarea><br></span>
+                </div>
+
+                <input class="form-item" type="submit" name="submit" id="submit-button">
+            </form>
+        </div>
+    </div>
+
+<%- include('../partials/footer') %>
