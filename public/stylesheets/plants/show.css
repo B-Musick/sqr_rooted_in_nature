@@ -1,0 +1,120 @@
+.show-page-container {
+    padding-top: 20px;
+    background-color: lightgray;
+}
+
+.show-page-inner-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.image-container {
+    align-self: center;
+}
+
+.image {
+    -webkit-box-shadow: 15px -9px 56px -16px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 15px -9px 56px -16px rgba(0, 0, 0, 0.75);
+    box-shadow: 15px -9px 56px -16px rgba(0, 0, 0, 0.75);
+    height: 300px;
+    border: solid rgb(117, 123, 130) 5px;
+    margin-top: 4%;
+}
+
+.content-container {
+    padding: 2%;
+}
+
+.header {
+    font-weight: 800;
+    text-align: end;
+    padding-right: 2%;
+    padding-top: 2%;
+}
+
+.content-value-container {
+    color: white;
+    background-color: rgb(117, 123, 130);
+    padding: 20px 30px;
+    ;
+    padding-left: 30px;
+    ;
+    margin-left: -30px;
+    width: 100%;
+}
+
+/**************************** COMMENTS ***************************************/
+.comments-container h5 {
+    text-align: center;
+    background-color: rgb(117, 123, 130);
+    color: white;
+    margin: 0;
+    margin-top: 10px;
+    padding: 5px 0;
+}
+
+.comment-row {
+    display: grid;
+    grid-template-columns: 170px 90%;
+    padding: 0 30px;
+    border-bottom: 1px rgb(117, 123, 130) solid;
+}
+
+.comment-column-left {
+    grid: 1/2;
+    border-right: 1px rgb(117, 123, 130) solid;
+}
+
+.comment-column-right {
+    grid: 2/3;
+    padding: 10px 20px;
+}
+
+.edit-delete-buttons-container {
+    display: flex;
+    padding: 10px 10px 10px 0;
+    justify-content: flex-end;
+}
+
+.comments-edit-delete-button-container {
+    display: flex;
+    padding-bottom: 10px;
+    justify-content: flex-end;
+    padding-right: 20px;
+}
+
+.comments-edit-delete-button-container a,
+input {
+    all: unset;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 5px;
+    font-size: 14px;
+
+}
+
+.comments-edit-button,
+.comments-delete-button {
+    background-color: rgb(117, 123, 130);
+    border: rgb(117, 123, 130);
+    color: white;
+
+}
+
+.post-comment-button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.post-comment-button-container a,
+input {
+    all: unset;
+    background-color: rgb(117, 123, 130);
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 5px;
+    font-size: 14px;
+
+}

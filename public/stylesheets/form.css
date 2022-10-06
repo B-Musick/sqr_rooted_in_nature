@@ -1,0 +1,56 @@
+.form-page {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(25, 98, 255);
+    padding-top: 20px;
+    position: absolute;
+}
+
+.form-container {
+    width: 360px;
+    background-color: rgb(233, 225, 225);
+    padding: 20px;
+    margin: 0 auto;
+    border: 5px solid grey;
+}
+
+.form-item {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'VT323', monospace;
+    padding: 5px;
+}
+
+.form-item input,
+textarea {
+    all: unset;
+    width: 200px;
+    height: 25px;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid gray;
+    padding-left: 5px;
+}
+
+.form-item textarea {
+    height: 100px;
+}
+
+.form-title-container {
+    justify-content: center;
+    font-family: 'VT323', monospace;
+    width: 100%;
+    font-size: 25px;
+}
+
+.submit-button {
+    all: unset;
+    width: 100%;
+    border: 1px grey solid;
+    background-color: lightgray;
+    text-align: center;
+    padding: 3px;
+    margin-top: 5px;
+    font-family: 'VT323', monospace;
+}

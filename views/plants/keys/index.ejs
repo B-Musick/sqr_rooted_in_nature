@@ -1,0 +1,43 @@
+<%- include('../../partials/header') %>
+    <div id="key-page-title">plant key</div>
+    <div id="key-page-container">
+        <div id="group-key-selection-container">
+            <div id="group-key-selection-title">GROUPS</div>
+            <div id="group-key-selection-choices">
+                <% Object.keys(groups).forEach(group=>{ %>
+                    <a href="keys/<%=groups[group].group%>">
+                        <div>
+                            <%=groups[group].name%>
+                        </div>
+                    </a>
+                    <% }); %>
+            </div>
+        </div>
+
+        <div id="family-key-selection-container">
+            <div id="family-key-selection-title">FAMILIES</div>
+            <div id="family-keys-container">
+                <% Object.keys(groups).forEach(group=>{ %>
+                    <div style="margin-bottom: 25px;">
+                        <div id="group-title">
+                            <%=groups[group].name%>
+                        </div>
+                        <div id="family-key-selection-container">
+                            <%groups[group].families.forEach(family=>{ %>
+                                <div id="family-key-selection">
+                                    <a href="keys/<%=family%>">
+                                        <div id="family-name">
+                                            <%=family%>
+                                        </div>
+                                    </a>
+
+                                </div>
+                                <% }) %>
+                        </div>
+
+                    </div>
+                <%});%>
+            </div>
+        </div>
+    </div>
+<%- include('../../partials/footer') %>

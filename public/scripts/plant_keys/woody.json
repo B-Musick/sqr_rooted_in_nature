@@ -1,0 +1,167 @@
+{
+    "group": "Group 2",
+    "name": "Woody Plants",
+    "key": {
+        "01": {
+            "a": {
+                "sentence" : "Fruit a woody or fleshy cone, formed of seedbearing scales, or an exposed seed in a fleshy cup; leaves evergreen needles or scales [GYMNOSPERMS]",
+                "result" : "02"
+            },
+            "b": {
+                "sentence" : "Fruit various, not a cone or fleshy cup; leaves mostly deciduous with blades linear to broad, occasionally needle-like and evergreen [ANGIOSPERMS]",
+                "result" : "05"
+            }
+        },
+        "02": {
+            "a": {
+                "sentence" : "Leaves scale-like Cupressaceae",
+                "result" : "Juniperus"
+            },
+            "b": {
+                "sentence" : "Leaves needle-like 03",
+                "result" : "03"
+            }
+        },
+        "03": {
+            "a": {
+                "sentence" : "Leaves paired (opposite) or in rings around the stem (whorls); mature ♀ cones berry-like, fleshy, waxy and bluish",
+                "result" : "Cupressaceae"
+            },
+            "b": {
+                "sentence" : "Leaves single (alternate) or in clusters; ♀ cones not as above",
+                "result" : "04"
+            }
+        },
+        "04": {
+            "a": {
+                "sentence" : "Plants with either ♂ or ♀ structures (but not both); seeds single, dark blue, embedded in a juicy, bright red, berry-like structure (→ aril); needles single, flat, 1-2 cm long, yellowish green, with a small sharp point; inner bark reddish to purplish; shrubs or small trees in Waterton Lakes N",
+                "result" : "Taxaceae"
+            },
+            "b": {
+                "sentence" : "Plants with both ♂ and ♀ cones; seeds numerous, in the axils of woody, spirally arranged scales in ♀ cones; needles and bark various, but not as above; trees, often widespread",
+                "result" : "Pinaceae"
+            }
+        },
+        "05": {
+            "a": {
+                "sentence" : "Woody vines, trailing on the ground or climbing on adjacent supports (often other plants)",
+                "result" : "06"
+            },
+            "b": {
+                "sentence" : "Trees or shrubs, erect to sprawling on the ground, but not trailing or climbing vines",
+                "result" : "09"
+            }
+        },
+        "06": {
+            "a": {
+                "sentence" : "Leaves lobed or divided into leaflets; flowers with 4, coloured, petal-like sepals and no petals; fruits with a persistent, feathery style",
+                "result" : "Ranunculaceae"
+            },
+            "b": {
+                "sentence" : "Leaves simple (lower ones sometimes 3-lobed); flowers not as above; fruits without a persistent, feathery style",
+                "result" : "07"
+            }
+        },
+        "07": {
+            "a": {
+                "sentence" : "Leaves and branches opposite Caprifoliaceae",
+                "result" : "Caprifoliaceae"
+            },
+            "b": {
+                "sentence" : "Leaves and branches alternate",
+                "result" : "08"
+            }
+        },
+        "08": {
+            "a": {
+                "sentence": "Plants >10 cm tall, with slender, climbing stems (10)50-300(600) cm long; leaves thin and deciduous, 3-7 cm long, elliptic to broadly heart-shaped, sometimes with basal lobes",
+                "result": "Solanaceae"
+            },
+            "b": {
+                "sentence" : "Plants <5 cm tall, with thread-like, trailing stems 10-50 cm long; leaves thick, evergreen, 0-1 cm long, egg-shaped to broadly elliptic",
+                "result" : "Ericaceae"
+            }
+        },
+        "09": {
+            "a": {
+                "sentence" : "Leaves (some or all) scale-like, 2-4 mm",
+                "result" : "10"
+            },
+            "b": {
+                "sentence" : "Leaves not scale-like 11",
+                "result" : "11"
+            }
+        },
+        "10": {
+            "a": {
+                "sentence" : "Leaves and branches paired (opposite); plants hairless or with scattered, short hairs",
+                "result" : "Ericaceae"
+            },
+            "b": {
+                "sentence" : "Leaves and branches alternate; plants with dense, matted grey hairs and sparse, long, soft hairs throughout",
+                "result" : "Cistaceae"
+            }
+        },
+        "11": {
+            "a": {
+                "sentence" : "Leaves evergreen, thick, usually covered by a well-developed protective film (cuticle); shrubs",
+                "result" : "12"
+            },
+            "b": {
+                "sentence" : "Leaves deciduous, thin and flat (except for a few succulents), rarely with a thick cuticle; trees or shrubs",
+                "result" : "17"
+            }
+        },
+        "12": {
+            "a": {
+                "sentence" : "Leaf edges (some or all) rolled down/under",
+                "result" : "13"
+            },
+            "b": {
+                "sentence" : "Leaf edges relatively flat, not down-rolled",
+                "result" : "14"
+            }
+        },
+        "13": {
+            "a": {
+                "sentence" : "Stipules absent; leaves alternate, paired (opposite) or ± in rings (whorls), hairless to rusty- or yellow-hairy beneath, ± smoothedged",
+                "result" : "Ericaceae"
+            },
+            "b": {
+                "sentence" : "Stipules well-developed (→), linear to lanceshaped; leaves alternate, white-hairy beneath, usually edged with rounded teeth (at least near the base), sometimes ± smooth-edged",
+                "result" : "Rosaceae"
+            }
+        },
+        "14": {
+            "a": {
+                "sentence" : "Leaves and branches ± paired (opposite)",
+                "result" : "Celastraceae"
+            },
+            "b": {
+                "sentence" : "Leaves and branches alternate",
+                "result" : "15"
+            }
+        },
+        "15": {
+            "a": {
+                "sentence" : "Leaves distinctly sharp-toothed",
+                "result" : "Berberidaceae"
+            },
+            "b": {
+                "sentence" : "Leaves smooth-edged to obscurely toothed or wavy-edged",
+                "result" : "16"
+            }
+        },
+        "16": {
+            "a": {
+                "sentence" : "Leaves with 3 strong veins from the base and weak side veins, shiny, often sticky and sweetscented",
+                "result" : "Rhamnaceae"
+            },
+            "b": {
+                "sentence" : "Leaves usually with a prominent mid-veinbearing several side-veins along its length,sometimes shiny, but neither sticky noraromatic",
+                "result" : "Ericaceae"
+            }
+        }
+    }
+   
+}
