@@ -1,0 +1,106 @@
+@startuml
+
+skinparam packageStyle rectangle
+
+(server)
+
+package views #LightBlue{
+    package partials #LightGray{
+        (form.js)
+        (header.ejs)
+        (footer.ejs)
+    }
+    package plants #LightGray{
+        (index.ejs)
+        note bottom
+            Loads all plants
+            - Images
+            - Allow to click on plant to enter 
+        end note
+        (show.ejs)
+        note bottom
+            Loads individual plant
+            - Image
+            - Plant info 
+            ====
+            * Edit plant button
+            ====
+            * Delete plant button
+        end note
+    }
+    (landing.ejs)
+
+}
+
+package routes #GreenYellow{
+    package index.js #Grey{
+        '----------------------- Landing Page ---------------------' 
+        (server) -[#Green,bold]-> (/) : <color:green>/GET</color>
+        (/) -[#Green,bold]-> (landing.ejs)
+
+        '----------------------- Login route ---------------------' 
+        (server) -> [/login] : <color:cadetblue>/GET</color>
+        [/login] --> (form.js)
+        (form.js) --> [/login] : /POST
+
+        '----------------------- Register Routes ---------------------'
+        (server) -> [/register]
+        (/register) --> (form.js)
+
+        '----------------------- Logout Routes ---------------------'
+        (server) -> [/logout]
+    }
+
+    package plants.js #Grey{
+        (server) --> [/plants] : /GET
+        (server) ==> (plants.js)
+        (plants.js) -[#DarkRed,bold]-> (index.ejs) : <color:#DarkRed>/GET</color>
+        (plants.js) -[#DarkGreen,bold]-> (show.ejs) : <color:#DarkGreen>/GET /:id</color>
+        (plants.js) -[#BlueViolet,bold]-> (form.js) : <color:#BlueViolet>/GET /:id/edit</color>
+        (form.js) -[#BlueViolet,bold]-> (plants.js) : <color:#BlueViolet>/PUT /:id</color>
+
+        (plants.js) -[#Blue,bold]-> (form.js) : <color:#Blue>/GET /create</color>
+        (form.js) -[#Blue,bold]-> (plants.js) : <color:#Blue>/POST /</color>
+
+    }
+}
+
+package public #OrangeRed{
+    package scripts #LightGray{
+        package plants2 #DarkCyan{
+            (plant-filter)
+        }
+
+        '----------------------- Navbar ---------------------'
+        (navbar.js)
+        note bottom
+            - Made it so to create a new dropdown, just use the newDropdown() method
+
+            let newCategory = newDropdown(categoryName, dropdownTopic1, dropdownTopic2,...);
+
+            =======
+            METHODS
+            =======
+            createDropdown() - adds new div for the dropdown
+            createDropdownLink() - Adds name to dropdown link
+            addToNavbar() - Adds dropdown link to navbar
+            createDropdownItems() - Adds the links which will shown when dropdown clicked
+            
+        end note
+        (landing.ejs) ==> (navbar.js)
+
+    }
+    package stylesheets #LightGray{
+        package partialsCSS #DarkMagenta{
+            (form.css)
+            (header.css)
+        }
+        package plantsCSS #DarkMagenta{
+            (index.css)
+            (show.css)
+        }
+        (landing.css)
+        (navbar.css)
+    }
+}
+@enduml

@@ -1,0 +1,37 @@
+<div class="key-choice">
+    <!-- b sentences -->
+    <!-- Loop through each word in the sentence and see if there is a dictionary term to attach to it -->
+    <%sentence.forEach(word=>{%>
+        <%let new_word=word.match(/[a-z]*/i);%>
+            <!-- Take only the letters -->
+            <%if(Object.keys(dictionary).includes(new_word[0])){%>
+                <!-- If there is a word from the dictionary then add this tooltip to the word -->
+                <a class="tooltip" style="color:white;">
+                    <%=word%>
+                        <span>
+                            <div>
+                                <%=dictionary[new_word[0]]['description']%>
+                            </div>
+                            <img src="<%=dictionary[new_word[0]]['img']%>" />
+                        </span>
+                </a>
+                <%}else{%>
+                    <!-- Otherwise just print the word -->
+                    <%= word %>
+                        <%}%>
+                            <%});%>
+                                <% if(parseInt(result)){ %>
+                                    <a href="?key_val=<%=result %>">
+                                        <span class="next-button">Next</span></a>
+</div>
+<% }else{ %>
+    <!-- If its a word then its the family name https://en.wikipedia.org/wiki -->
+    <a href="../families/<%= result %>">
+        <span class="next-button">
+            <%= result %>
+        </span></a>
+    <a href="https://en.wikipedia.org/wiki/<%= result %>">
+        <span class="next-button">Wikipedia</span></a>
+    <% } %>
+
+        </div>

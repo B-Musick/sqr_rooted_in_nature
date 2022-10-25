@@ -16,81 +16,15 @@
             <%=key_obj['name']%>
         </div>
         <div id="key-choice-container">
-            <div class="key-choice">
-                <!-- 'a' sentence choices -->
-                <%a_sentence.forEach(word=>{%>
-                    <%let new_word=word.match(/[a-z]*/i);%>
-                        <!-- Take only the letters -->
-                        <%if(Object.keys(dictionary).includes(new_word[0])){%>
-                            <!-- If there is a word from the dictionary then add this tooltip to the word -->
-                            <a class="tooltip" style="color:white;">
-                                <%=word%>
-                                    <span>
-                                        <div>
-                                            <%=dictionary[new_word[0]]['description']%>
-                                        </div>
-                                        <img src="<%=dictionary[new_word[0]]['img']%>" />
-                                    </span>
-                            </a>
-                            <%}else{%>
-                                <!-- Otherwise just print the word -->
-                                <%= word %>
-                                    <%}%>
-                                        <%});%>
+            <!-- Set the choices for the a sentences -->
+            <%- include('../../partials/tooltip',{sentence:a_sentence,result:a_result,dictionary:dictionary,key_obj, group, key_val})%>
 
-                                            <% if(parseInt(a_result)){ %>
-                                                <!-- If integer then this leads to another set of binomial sentences -->
-                                                <a href="?key_val=<%= a_result %>"> <span
-                                                        class="next-button">Next</span></a>
-                                                <% }else{ %>
-                                                    <!-- If its a word, then load the family page associated -->
-                                                    <a href="../families/<%= a_result %>"><span class="next-button">
-                                                            <%= a_result %>
-                                                        </span></a>
-                                                    <a href="https://en.wikipedia.org/wiki/<%= a_result %>">
-                                                        <span class="next-button">Wikipedia</span></a>
-                                                    <% } %>
-            </div>
+            <!-- Set the choices for the b sentences -->
+            <%- include('../../partials/tooltip',{sentence:b_sentence,result:b_result,dictionary:dictionary,key_obj, group, key_val}) %>
 
-            <div class="key-choice">
-                <!-- b sentences -->
-                <!-- Loop through each word in the sentence and see if there is a dictionary term to attach to it -->
-                <%b_sentence.forEach(word=>{%>
-                    <%let new_word=word.match(/[a-z]*/i);%>
-                        <!-- Take only the letters -->
-                        <%if(Object.keys(dictionary).includes(new_word[0])){%>
-                            <!-- If there is a word from the dictionary then add this tooltip to the word -->
-                            <a class="tooltip" style="color:white;">
-                                <%=word%>
-                                    <span>
-                                        <div>
-                                            <%=dictionary[new_word[0]]['description']%>
-                                        </div>
-                                        <img src="<%=dictionary[new_word[0]]['img']%>" />
-                                    </span>
-                            </a>
-                            <%}else{%>
-                                <!-- Otherwise just print the word -->
-
-                                <%= word %>
-                                    <%}%>
-                                        <%});%>
-                                            <% if(parseInt(b_result)){ %>
-                                                <a href="?key_val=<%=b_result %>">
-                                                    <span class="next-button">Next</span></a>
-            </div>
-            <% }else{ %>
-                <!-- If its a word then its the family name https://en.wikipedia.org/wiki -->
-                <a href="../families/<%= b_result %>">
-                    <span class="next-button">
-                        <%= b_result %>
-                    </span></a>
-                <a href="https://en.wikipedia.org/wiki/<%= b_result %>">
-                    <span class="next-button">Wikipedia</span></a>
-                <% } %>
         </div>
     </div>
-    </div>
+    
 </body>
 
 </html>

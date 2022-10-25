@@ -16,6 +16,7 @@ var fernKey = JSON.parse(fs.readFileSync('./public/scripts/plant_keys/ferns.json
 
 // Import DICTIONARY
 let dictionary = require('../public/scripts/plants/dictionary');
+
 /************************ KEYS *********************************/
 
 // /****** FAMILY KEYS *******/
