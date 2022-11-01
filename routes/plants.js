@@ -1,13 +1,16 @@
+
+/*****************
+ * /plants
+ * 
+ ******************/
 var express = require('express');
 var router = express.Router();
 
 // SCHEMA MODEL IMPORTS
 var Plant = require('../models/plant');
-var Comment = require('../models/comment');
 
 // IMPORT MIDDLEWARE
 var middleware = require('../middleware');
-// const res = require('express/lib/response');
 
 /**
  * Index Route
@@ -22,6 +25,16 @@ var middleware = require('../middleware');
 router.get('/', (req, res) => {
     Plant.find({}, (err, foundPlants) => {
         err ? console.log(err) : res.render('plants/index', { plants: foundPlants, currentUser: req.user });
+    });
+});
+
+/**
+ * JSON route which will return the data in JSON form
+ * - Useful for testing to make sure data is obtatined from the DB
+ */
+router.get('/json', (req, res) => {
+    Plant.find({}, (err, foundPlants) => {
+        err ? console.log(err) : res.send(foundPlants);
     });
 });
 

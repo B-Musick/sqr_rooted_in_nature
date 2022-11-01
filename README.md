@@ -24,7 +24,17 @@ nodemon server.js
 - Had to update the logout function
 https://stackoverflow.com/questions/72336177/error-reqlogout-requires-a-callback-function 
 
-# Add Plant Key
+# Plant Keys
+
+## Process I used to program keys
+For the plant keys, I wrote a [bash script](/public/other/rin_group_extractor.sh) which takes in the text file 
+of a specifically formatted binomial plant key, extracts the parts and places them into a 
+JSON file form ([example](/public/scripts/plant_keys/aquatic.json)). This JSON file is then used to extract the specific information as the user 
+clicks through the answers to the binomial questions. <br><br>
+
+## Using the Plant Keys
+
+## Add Plant Key into code
 1) Turn pdftotext
 2) Order each sentence onto separate lines (result must be separated at end by '. . . .', sentence must start with #[letter])
 3) Use rin_group_extractor (/usr/local/bin) script , will need to have it here so $PATH calls it and can access it from anywhere in the terminal

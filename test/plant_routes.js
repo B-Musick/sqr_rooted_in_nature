@@ -1,4 +1,5 @@
 let assert = require('assert');
+let mongoose = require('mongoose');
 let { expect } = require('chai');
 process.env.NODE_ENV = 'test',
     chai = require('chai'),
@@ -10,89 +11,128 @@ should = chai.should(),
 plantRoutes = require('../routes/plants');
 
 
+
 // SCHEMA MODEL IMPORTS
 var Plant = require('../models/plant');
 var User = require('../models/user');
 
+// IMPORT SEED
+var plantSeedDB = require('../plantSeed.js');
 
-let base_url = 'http://localhost:3008/';
+let base_url = 'http://localhost:3000/';
 chai.use(chaiHttp);
 
-describe("Rooted In Nature Server", function () {
-    Plant.collection.drop();
-    let plantID;
-    beforeEach(function (done) {
-        var newPlant = new Plant({
-            genus: 'Populous',
-            species: 'Tremuloides',
-            image: 'imageUrl',
-            author: 'Brendan',
-            sepals: '5',
-            pedals: '5',
-            stamens: '5',
-            carpels: '5',
-            commonName: 'Trembling Aspen',
-            description: 'Common tree',
-            family: 'Betula',
-            id: 23,
-            username: 'bendan'
-        });
-        newPlant.id;
-        newPlant.save(function (err) {
+describe("Plants", ()=> {
+    beforeEach((done) => { //Before each test we empty the database
+        Plant.deleteMany({}, (err) => {
             done();
         });
-    });
-    afterEach(function (done) {
-        Plant.collection.drop();
-        done();
+        plantSeedDB();
     });
 
 
-    describe("GET /", function () {
-        it("returns status code 200", function (done) {
+    // let plantID;
+    // beforeEach(function (done) {
+    //     var newPlant = new Plant({
+    //         genus: 'Populous',
+    //         species: 'Tremuloides',
+    //         image: 'imageUrl',
+    //         author: 'Brendan',
+    //         sepals: '5',
+    //         pedals: '5',
+    //         stamens: '5',
+    //         carpels: '5',
+    //         commonName: 'Trembling Aspen',
+    //         description: 'Common tree',
+    //         family: 'Betula',
+    //         id: 23,
+    //         username: 'bendan'
+    //     });
+    //     newPlant.id;
+    //     newPlant.save(function (err) {
+    //         done();
+    //     });
+    // });
+    // afterEach(function (done) {
+    //     Plant.collection.drop();
+    //     done();
+    // });
+
+    // describe("GET/ plant", function () {
+    //     it("should get all the plants", function (done) {
+    //         chai.request(server)
+    //             .get('/')
+    //             .end(function (error, response) {
+    //                 //expect(response.statusCode).toBe(200);
+    //                 response.should.have.status(200);
+    //                 response.body.should.be.a('object');
+    //                 done();
+    //             });
+    //     });
+    // });
+
+    describe("GET/ plants/json", ()=> {
+        it("returns list of all plants from database", (done)=> {
             chai.request(server)
-                .get('/')
-                .end(function (error, response) {
-                    //expect(response.statusCode).toBe(200);
+                .get('/plants/json')
+                .end((error, response)=> {
                     response.should.have.status(200);
                     response.body.should.be.a('object');
+                    console.log(response);
+                    // response.text.should.include('Populous Tremuloides');
+                    // response.text.should.include('Trembling Aspen');
                     done();
+
                 });
         });
     });
 
-    describe("GET /plants", function () {
-
-        it("returns list of all plants from database", function (done) {
+    describe("GET/ plants", () => {
+        it("returns list of all plants from database", (done) => {
             chai.request(server)
-                .get('/plants')
-                .end(function (error, response) {
+                .get('/plants/json')
+                .end((error, response) => {
                     response.should.have.status(200);
+                    response.body.should.be.a('object');
+                    console.log(response);
                     response.text.should.include('Populous Tremuloides');
                     response.text.should.include('Trembling Aspen');
                     done();
 
                 });
         });
-
-
     });
+});
 
-    describe("GET /plants/:id", function () {
-        it("returns status code 200", function (done) {
-            chai.request(server)
-                .get('/plants')
-                .query('23')
+    // describe("GET/ plants", function () {
+    //     it("returns list of all plants from database", function (done) {
+    //         chai.request(server)
+    //             .get('/plants')
+    //             .end(function (error, response) {
+    //                 response.should.have.status(200);
+    //                 response.text.should.include('Populous Tremuloides');
+    //                 response.text.should.include('Trembling Aspen');
+    //                 done();
 
-                .end(function (error, response) {
-                    //expect(response.statusCode).toBe(200);
-                    response.should.have.status(200);
-                    console.log(response.body.genus);
+    //             });
+    //     });
+    // });
 
-                    done();
-                });
-        });
-    });
+    // describe("GET /plants/:id", function () {
+    //     it("returns status code 200", function (done) {
+    //         chai.request(server)
+    //             .get('/plants')
+    //             .query('23')
+
+    //             .end(function (error, response) {
+    //                 //expect(response.statusCode).toBe(200);
+    //                 response.should.have.status(200);
+    //                 console.log(response.body.genus);
+
+    //                 done();
+    //             });
+    //     });
+    // });
 
     // describe("GET /books/create", function () {
     //     it("returns status code 200", function (done) {
@@ -183,6 +223,3 @@ describe("Rooted In Nature Server", function () {
     //             });
     //     })
     // });
-
-
-});

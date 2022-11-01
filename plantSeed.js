@@ -5,12 +5,19 @@ var mongoose = require('mongoose'),
 // Starter seed data (plant objects)
 var data = [
     {
-        genus: 'Taraxicum',
-        species: 'officianalis'
-    },
-    {
-        genus: 'Populus',
-        species: 'tremuloides'
+            genus: 'Populous',
+            species: 'Tremuloides',
+            image: 'imageUrl',
+            author: 'Brendan',
+            sepals: '5',
+            pedals: '5',
+            stamens: '5',
+            carpels: '5',
+            commonName: 'Trembling Aspen',
+            description: 'Common tree',
+            family: 'Betula',
+            // id: 1,
+            username: 'bendan'
     }
 ];
 
@@ -32,20 +39,21 @@ function plantSeedDB() {
                 }
                 // If the seed is added then print it was added
                 console.log('Added Plant!');
+                console.log(seed)
 
-                Comment.create({
-                    user: 'Brendan', // Fake user
-                    comment: 'I enjoy this plant' // Fake comment
-                }, (err, createdComment) => {
-                    if (err) {
-                        console.log(err);
-                    } else {
-                        // Push comment to the current plant objects comment
-                        plant.comments.push(createdComment);
-                        plant.save(); // Save this comment
-                        console.log('Added a comment!'); // PRint that it worked
-                    }
-                });
+                // Comment.create({
+                //     user: 'Brendan', // Fake user
+                //     comment: 'I enjoy this plant' // Fake comment
+                // }, (err, createdComment) => {
+                //     if (err) {
+                //         console.log(err);
+                //     } else {
+                //         // Push comment to the current plant objects comment
+                //         plant.comments.push(createdComment);
+                //         plant.save(); // Save this comment
+                //         console.log('Added a comment!'); // PRint that it worked
+                //     }
+                // });
 
             });
         });
