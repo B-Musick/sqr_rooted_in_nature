@@ -12,28 +12,70 @@ router.get('/', (req, res) => {
                         AUTHORIZATION ROUTES
    ========================================================================== */
 
+reg_template_vars = {
+    inputs: ['username', 'password', 'email'],
+    title: 'become rooted in nature',
+    backLink: '/',
+    action: '/register',
+    edit: false
+}
+
 // REGISTER SHOW ROUTE
-router.get('/register', (req, res) => res.render('register'));
+// router.get('/register', (req, res) => res.render('register'));
+// REGISTER SHOW ROUTE
+router.get('/register', (req, res) => {
+    process.env.NODE_ENV == 'test' ?
+        res.json(reg_template_vars) : res.render('partials/form', reg_template_vars)
+});
+
+// // REGISTER NEW ROUTE
+// router.post('/register', (req, res) => {
+//     var newUser = new User({ username: req.body.username });
+
+//     User.register(newUser, req.body.password, (err, user) => {
+//         // This method coming from passportLocalMongoose, password is stored as hash
+//         if (err) {
+//             // Error occurs in registration (or user already exists)
+//             console.log(err);
+//             return res.render('register');
+//         } else {
+//             passport.authenticate('local')(req, res, () => {
+//                 // When user is registered successfully
+//                 console.log("Created user"+req.body.username);
+//                 res.redirect('/plants');
+//             });
+//         }
+//     })
+// });
 
 // REGISTER NEW ROUTE
 router.post('/register', (req, res) => {
-    var newUser = new User({ username: req.body.username });
+    var newUser = new User({ username: req.body.username, email: req.body.email });
 
     User.register(newUser, req.body.password, (err, user) => {
-        // This method coming from passportLocalMongoose, password is stored as hash
         if (err) {
-            // Error occurs in registration (or user already exists)
+            // Error occurs in registration
             console.log(err);
-            return res.render('register');
+            return res.render('partials/form', reg_template_vars);
         } else {
             passport.authenticate('local')(req, res, () => {
                 // When user is registered successfully
-                console.log("Created user"+req.body.username);
-                res.redirect('/plants');
+                console.log('Successfully signed up!')
+                process.env.NODE_ENV == 'test' ?
+                    res.json(user) : res.redirect('/');
             });
         }
     })
-});
+})
+
+
+log_template_vars = {
+    inputs: ['username', 'password'],
+    title: 'Login',
+    backLink: '/',
+    action: '/login',
+    edit: false
+}
 
 // LOGIN SHOW ROUTE - Uses flash message error 
 router.get('/login', (req, res) => res.render('login'));

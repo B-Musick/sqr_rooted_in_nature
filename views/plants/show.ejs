@@ -2,16 +2,16 @@
     <!-- Information about plant -->
     <!-- Note that container-fluid fills the whole background while 'container' leavs some margein on the sides -->
     <div class="show-page-container">
-        <a class="back-button" href="/plants/">BACK</a>
+        <a class="back-button" href="/plants/">back</a>
+
         <div class="show-page-inner-container">
             <div class="image-container">
-                <img class="image" src='<%= plant.image %>' alt="<%=plant.genus%> <%=plant.species%> Image">
+                <img class="image" src='<%= plant.imageurl %>' alt="<%=plant.genus%> <%=plant.species%> Image">
             </div>
             <div class="content-container">
-    
                 <h1 class="header content-item">
                     <%=plant.genus%>
-                        <%=plant.species%> "<%=plant.commonName%>"
+                        <%=plant.species%> "<%=plant.commonname%>"
                 </h1>
                 <div class="content-value-container">
                     <h4 class="content-item"><span style="font-weight: 800">Family:</span>
@@ -19,13 +19,13 @@
                     </h4>
                     <h4 class="content-item"><span style="font-weight: 800">Floral Formula:</span>
                         K<sup>
-                            <%=plant.sepals%>
+                            <%=plant.sepalcount%>
                         </sup>C<sup>
-                            <%=plant.pedals%>
+                            <%=plant.pedalcount%>
                         </sup>A<sup>
-                            <%=plant.stamens%>
+                            <%=plant.stamencount%>
                         </sup>G<sup>
-                            <%=plant.carpels%>
+                            <%=plant.carpelcount%>
                         </sup>
                     </h4>
                 </div>
@@ -50,12 +50,13 @@
                             <form action="/plants/<%=plant._id%>?_method=DELETE" method="POST">
                                 <input type="submit" class="comments-delete-button" value="DELETE PLANT">
                             </form>
-                            <%};%>
+                        <%};%>
                                 <% if(currentUser){ %>
                                     <a href="/plants/<%=plant._id%>/comments/new" class="add-comment">NEW COMMENT</a>
-                                    <% } %>
+                                <% } %>
                     </div>
                 </div>
+
                 <!-- Print out the comments made by the users by looping through array of comment objects -->
                 <h5>COMMENTS</h5>
                 <% plant.comments.forEach((comment)=>{%>
@@ -85,11 +86,11 @@
                                             <input class="comments-delete-button" type="submit" value="DELETE COMMENT">
                                         </form>
                                     </div>
-                                    <% }; %>
+                                <% }; %>
                             </div>
                         </div>
                     </div>
-                    <% }); %>
+                <% }); %>
             </div>
         </div>
     </div>
