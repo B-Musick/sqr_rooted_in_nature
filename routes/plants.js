@@ -136,30 +136,60 @@ router.post('/', middleware.isLoggedIn, (req, res) => {
 
 // SHOW ROUTE (/plants/show)
 router.get('/:id', (req, res) => {
-    Plant.findById(req.params.id).populate('comments').exec((err, showPlant) => {
-        err ? console.log(err) : res.render('plants/show', { plant: showPlant });
-    });
+    Plant.findById(req.params.id, (err, foundPlant) => {
+        err ? console.log(err) :
+            process.env.NODE_ENV == 'test' ?
+                res.json({ plant: foundPlant }) :
+                res.render('plants/show', { plant: foundPlant })
+    })
 });
 
 // EDIT ROUTE - form submits to update, pass plant were editing to the form
 router.get('/:id/edit', middleware.checkPlantOwnership, (req, res) => {
+    // Plant.findById(req.params.id, (err, foundPlant) => {
+    //     err ? res.redirect('/plants') : res.render('plants/edit', { plant: foundPlant });
+    // });
+    let inputs = ['genus', 'species', 'common name', 'family name', 'sepal count',
+        'pedal count', 'stamen count', 'carpel count', 'description', 'image url']
     Plant.findById(req.params.id, (err, foundPlant) => {
-        err ? res.redirect('/plants') : res.render('plants/edit', { plant: foundPlant });
+        template_vars = {
+            title: 'create new plant',
+            backLink: '/',
+            action: '/plants/' + req.params.id + '?_method=PUT',
+            inputs,
+            plant: foundPlant,
+            edit: true
+        }
+        err ? res.redirect('/plants') :
+            process.env.NODE_ENV == 'test' ?
+                res.json(template_vars) :
+                res.render('partials/form', template_vars);
     });
 });
 
 // UPDATE ROUTE
 router.put('/:id', middleware.checkPlantOwnership, (req, res) => {
-    Plant.findByIdAndUpdate(req.params.id, req.body.plant, (err, updatedPlant) => {
-        err ? res.redirect('plants') : res.redirect('/plants/' + req.params.id);
+    // Plant.findByIdAndUpdate(req.params.id, req.body.plant, (err, updatedPlant) => {
+    //     err ? res.redirect('plants') : res.redirect('/plants/' + req.params.id);
+    // });
+    Plant.findByIdAndUpdate(req.params.id, req.body, (err, foundPlant) => {
+        err ? res.redirect('plants') :
+            process.env.NODE_ENV == 'test' ?
+                res.json({ foundPlant }) :
+                res.redirect('/plants/' + req.params.id);
     });
-
 });
 
 // DELETE ROUTE
 router.delete('/:id', middleware.checkPlantOwnership, (req, res) => {
+    // Plant.findByIdAndRemove(req.params.id, err => {
+    //     err ? res.redirect('/plants') : res.redirect('/plants');
+    // });
     Plant.findByIdAndRemove(req.params.id, err => {
-        err ? res.redirect('/plants') : res.redirect('/plants');
+        err ? res.redirect('/plants') :
+            process.env.NODE_ENV == 'test' ?
+                res.json('deleted plant') :
+                res.redirect('/plants');
     });
 });
 
