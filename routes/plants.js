@@ -5,12 +5,16 @@
  ******************/
 var express = require('express');
 var router = express.Router();
+dotenv = require('dotenv')
 
 // SCHEMA MODEL IMPORTS
 var Plant = require('../models/plant');
 
 // IMPORT MIDDLEWARE
 var middleware = require('../middleware');
+
+// .env FILE SETUP (process.env.VAR)
+dotenv.config();
 
 /**
  * Index Route
@@ -24,7 +28,41 @@ var middleware = require('../middleware');
  */
 router.get('/', (req, res) => {
     Plant.find({}, (err, foundPlants) => {
-        err ? console.log(err) : res.render('plants/index', { plants: foundPlants, currentUser: req.user });
+        let filterBarSelectors = ["country", "families", "genus"];
+
+        let families = ["Aceraceae", "Populaceae"];
+
+        let geni = ["Populous"]
+
+        let query = {} // Used in find() method to find value from database
+
+        if (Object.entries(req.query).length !== 0) {
+            // Filter by values given from the dropdowns
+            Object.keys(req.query).forEach(key => {
+                if (req.query[key] !== "none") {
+                    // If value is given to filter by, add it to query
+                    query[key] = req.query[key];
+                }
+            })
+            Plant.find(query, (err, foundPlants) => {
+                err ? console.log(err) : // If test then return JSON, otherwise ejs page
+                    process.env.NODE_ENV == 'test' ?
+                        res.json({ foundPlants }) :
+                        res.render('plants/index', {
+                            plants: foundPlants,
+                            families, filterBarSelectors, geni, query
+                        })
+            })
+        } else {
+            process.env.NODE_ENV == 'test' ?
+                res.json({ foundPlants }) :
+                res.render('plants/index', {
+                    plants: foundPlants,
+                    currentUser: req.user
+                    // families, filterBarSelectors, geni, query
+                })
+        }
+        // err ? console.log(err) : res.render('plants/index', { plants: foundPlants, currentUser: req.user });
     });
 });
 
@@ -40,7 +78,18 @@ router.get('/json', (req, res) => {
 
 // NEW ROUTE (plants/new)
 router.get('/new', middleware.isLoggedIn, (req, res) => {
-    res.render('plants/new')
+    // res.render('plants/new')
+    let inputs = ['genus', 'species', 'common name', 'family name', 'sepal count',
+        'pedal count', 'stamen count', 'carpel count', 'description', 'image url']
+        
+    let template_vars = {
+        inputs, title: 'create new plant',
+        backLink: '/',
+        action: '/plants',
+        edit: false
+    }
+    process.env.NODE_ENV == 'test' ? res.json(template_vars) : // If test then load json
+        res.render('partials/form', template_vars)
 });
 
 // CREATE ROUTE (/plants)
@@ -49,22 +98,39 @@ router.post('/', middleware.isLoggedIn, (req, res) => {
         id: req.user._id,
         username: req.user.username
     };
+    // var newPlant = {
+    //     genus: req.body.genus,
+    //     species: req.body.species,
+    //     image: req.body.image,
+    //     author: author, // Created author before this var
+    //     sepals: req.body.sepals,
+    //     pedals: req.body.pedals,
+    //     stamens: req.body.stamens,
+    //     carpels: req.body.carpels,
+    //     commonName: req.body.commonName,
+    //     description: req.body.description,
+    //     family: req.body.family
+    // };
+
+    // Plant.create(newPlant, (err, plant) => {
+    //     err ? console.log(err) : res.redirect('/plants');
+    // });
     var newPlant = {
         genus: req.body.genus,
         species: req.body.species,
-        image: req.body.image,
-        author: author, // Created author before this var
-        sepals: req.body.sepals,
-        pedals: req.body.pedals,
-        stamens: req.body.stamens,
-        carpels: req.body.carpels,
-        commonName: req.body.commonName,
+        imageurl: req.body.imageurl,
+        author: author,
+        sepalcount: req.body.sepalcount,
+        pedalcount: req.body.pedalcount,
+        stamencount: req.body.stamencount,
+        carpelcount: req.body.carpelcount,
+        commonname: req.body.commonname,
         description: req.body.description,
-        family: req.body.family
+        familyname: req.body.familyname
     };
 
     Plant.create(newPlant, (err, plant) => {
-        err ? console.log(err) : res.redirect('/plants');
+        err ? console.log(err) : process.env.NODE_ENV == 'test' ? res.json({ plant }) : res.redirect('/plants');
     });
 });
 

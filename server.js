@@ -65,16 +65,16 @@ app.use(function (req, res, next) {
 app.use(methodOverride('_method'));
 
 // Connect to the database running on port 27017
-// mongoose.connect("mongodb://localhost:27017/rin_refactor"), { useNewUrlParser: true }; 
+mongoose.connect("mongodb://localhost:27017/rin_refactor"), { useNewUrlParser: true }; 
 
 // *** mongoose - FOR TEST DATABASE*** ///
-mongoose.connect(config.mongoURI[app.settings.env], function (err, res) {
-    if (err) {
-        console.log('Error connecting to the database. ' + err);
-    } else {
-        console.log('Connected to Database: ' + config.mongoURI[app.settings.env]);
-    }
-});
+// mongoose.connect(config.mongoURI[app.settings.env], function (err, res) {
+//     if (err) {
+//         console.log('Error connecting to the database. ' + err);
+//     } else {
+//         console.log('Connected to Database: ' + config.mongoURI[app.settings.env]);
+//     }
+// });
 
 // 12. - Takes request body and parses into JS object which will give the input ‘name’ attribute a value which is input by the user. (used to get form body)
 // Make sure it is the first above all other app.use methods, otherwise it wont allow creation of schema

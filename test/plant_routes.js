@@ -71,6 +71,7 @@ describe("Plants", ()=> {
     //     });
     // });
 
+    // Adding JSON routes so can test that the data is sent properly
     describe("GET/ plants/json", ()=> {
         it("returns list of all plants from database", (done)=> {
             chai.request(server)
@@ -95,6 +96,7 @@ describe("Plants", ()=> {
                     response.should.have.status(200);
                     response.body.should.be.a('object');
                     console.log(response);
+                    // Should have dynamically loaded values to the screen
                     response.text.should.include('Populous Tremuloides');
                     response.text.should.include('Trembling Aspen');
                     done();
