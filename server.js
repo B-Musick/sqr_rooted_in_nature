@@ -88,6 +88,9 @@ mongoose.connect("mongodb://localhost:27017/rin_refactor"), { useNewUrlParser: t
 // Make sure it is the first above all other app.use methods, otherwise it wont allow creation of schema
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// https://stackoverflow.com/questions/40403790/sending-a-post-request-with-chai-sends-an-empty-body
+app.use(require('body-parser').json()); // For testing
+
 // PREVENTS ANY BACKLASH FROM DIRECTORY CHANGES
 app.use(express.static(__dirname + "/public"));
 

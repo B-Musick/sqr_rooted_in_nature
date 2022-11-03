@@ -52,6 +52,7 @@ router.get('/register', (req, res) => {
 router.post('/register', (req, res) => {
     var newUser = new User({ username: req.body.username, email: req.body.email });
 
+
     User.register(newUser, req.body.password, (err, user) => {
         if (err) {
             // Error occurs in registration
@@ -78,7 +79,10 @@ log_template_vars = {
 }
 
 // LOGIN SHOW ROUTE - Uses flash message error 
-router.get('/login', (req, res) => res.render('login'));
+router.get('/login', (req, res) => {
+    process.env.NODE_ENV == 'test' ?
+        res.json(log_template_vars) : res.render('partials/form', log_template_vars)
+});
 
 /**
  * LOGIN POST ROUTE
