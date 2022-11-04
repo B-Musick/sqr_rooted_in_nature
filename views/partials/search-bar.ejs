@@ -1,0 +1,32 @@
+<%filterBarSelectors.forEach(filterType=>{%>
+    <!-- Loop through each filter type passed and create dropdown for it -->
+    <div class="filter-dropdown" id="<%=filterType%>-filter-dropdown">
+        <div id="<%=filterType%>-filter-label">
+            <%=filterType%>:
+        </div>
+        <select name="<%=filterType%>" id="<%=filterType%>-filter">
+            <option value="none">none</option>
+            <%filterValues[filterType].forEach(dropdownVal=>{%>
+                <!--  filterValues is set up as an object, like the following:
+
+                    let filterValues = {
+                        "families":["Aceraceae", "Populaceae"],
+                        "genus": ["Populous"]
+                    }
+
+                -->
+                <%if(query[filterType]==dropdownVal){%>
+                    <!-- If currently selected to filter, add 'selected' -->
+                    <option value="<%=dropdownVal%>" selected>
+                        <%=dropdownVal%>
+                    </option>
+                    <%}else{%>
+                        <!-- Otherwise just display none -->
+                        <option value="<%=dropdownVal%>">
+                            <%=dropdownVal%>
+                        </option>
+                        <%}%>
+                            <%})%>
+        </select>
+    </div>
+    <%})%>

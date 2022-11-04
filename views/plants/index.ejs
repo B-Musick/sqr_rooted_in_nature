@@ -1,4 +1,20 @@
 <%- include('../partials/header') %>
+ <!-- FILTER PLANTS TO SHOW LESS -->
+    <div id="filter-form-container">
+        <div id="filter-title">filter</div>
+        <form id="filter-form" action="/plants" method="GET">
+            <div id="search-containers">
+                
+            <%- include('../partials/search-bar',families, filterBarSelectors,
+                            filterValues, 
+                            geni, query) %>
+
+    
+
+            </div>
+            <input type="submit" name="" id="">
+        </form>
+    </div>
     <div class="plant-box-container">
         <!-- Go through each plant from the database and apply the box to them -->
         <% plants.forEach(function(plant){ %>

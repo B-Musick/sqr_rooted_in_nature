@@ -28,8 +28,12 @@ dotenv.config();
  */
 router.get('/', (req, res) => {
     Plant.find({}, (err, foundPlants) => {
-        let filterBarSelectors = ["country", "families", "genus"];
+        let filterBarSelectors = ["familyname", "genus"];
 
+        let filterValues = {
+            "familyname":["Aceraceae", "Populaceae"],
+            "genus":["Populous"]
+        }
         let families = ["Aceraceae", "Populaceae"];
 
         let geni = ["Populous"]
@@ -50,7 +54,9 @@ router.get('/', (req, res) => {
                         res.json({ foundPlants }) :
                         res.render('plants/index', {
                             plants: foundPlants,
-                            families, filterBarSelectors, geni, query
+                            families, filterBarSelectors,
+                            filterValues, 
+                            geni, query
                         })
             })
         } else {
@@ -58,8 +64,10 @@ router.get('/', (req, res) => {
                 res.json({ foundPlants }) :
                 res.render('plants/index', {
                     plants: foundPlants,
-                    currentUser: req.user
-                    // families, filterBarSelectors, geni, query
+                    currentUser: req.user,
+                    filterValues, 
+
+                    families, filterBarSelectors, geni, query
                 })
         }
         // err ? console.log(err) : res.render('plants/index', { plants: foundPlants, currentUser: req.user });
