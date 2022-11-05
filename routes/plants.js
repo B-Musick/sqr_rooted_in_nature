@@ -41,6 +41,7 @@ router.get('/', (req, res) => {
         let query = {} // Used in find() method to find value from database
 
         if (Object.entries(req.query).length !== 0) {
+            // req.query from the query string ex. "?familyname=Aceraceae&genus=Populous"
             // Filter by values given from the dropdowns
             Object.keys(req.query).forEach(key => {
                 if (req.query[key] !== "none") {

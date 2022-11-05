@@ -22,6 +22,9 @@
     <!------------------------------- FORMS --------------------------->
     <link rel="stylesheet" href="/stylesheets/form.css">
 
+    <!-- Search bar -->
+    <link rel="stylesheet" href="/stylesheets/partials/search-bar.css">
+
     <!------------------------ PLANT STYLESHEETS ------------------------------->
     <link rel="stylesheet" href="/stylesheets/plants/show.css">
     <link rel="stylesheet" href="/stylesheets/plants/index.css">
@@ -35,69 +38,71 @@
 </head>
 
 <body>
-    <div class="page-header">(RootedInNature)<sup>2</sup></div>
-    <svg width="100vw" height="260px" id="navbar-svg">
+    <header>
+        <div class="page-header">(RootedInNature)<sup>2</sup></div>
+        <svg width="100vw" height="260px" id="navbar-svg">
 
-    </svg>
-    <nav class="navbar">
-        <div class="navbar-links">
-            <div class='navbar-item-container'><a href="/">
-                    <div class="navbar-item">Home</div>
-                </a></div>
-            <div class='navbar-item-container'>
-                <a>
-                    <div class="navbar-item" id="navbar-plants">
-                        Plants
-                    </div>
-                </a>
-                <div id="plant-dropdown" class="dropdown-hidden">
-                    <a href="/plants/new">
-                        <div class="p-item dropdown-item-hidden">create</div>
+        </svg>
+        <nav class="navbar">
+            <div class="navbar-links">
+                <div class='navbar-item-container'><a href="/">
+                        <div class="navbar-item">Home</div>
+                    </a></div>
+                <div class='navbar-item-container'>
+                    <a>
+                        <div class="navbar-item" id="navbar-plants">
+                            Plants
+                        </div>
                     </a>
-                    <a href="/plants">
-                        <div class="p-item dropdown-item-hidden">view</div>
-                    </a>
-                    <a href="/plants/keys">
-                        <div class="p-item dropdown-item-hidden">keys</div>
-                    </a>
-                    <a href="/plants/groups">
-                        <div class="p-item dropdown-item-hidden">groups</div>
-                    </a>
-                    <a href="/plants/families">
-                        <div class="p-item dropdown-item-hidden">families</div>
-                    </a>
+                    <aside id="plant-dropdown" class="dropdown-hidden">
+                        <a href="/plants/new">
+                            <div class="p-item dropdown-item-hidden">create</div>
+                        </a>
+                        <a href="/plants">
+                            <div class="p-item dropdown-item-hidden">view</div>
+                        </a>
+                        <a href="/plants/keys">
+                            <div class="p-item dropdown-item-hidden">keys</div>
+                        </a>
+                        <a href="/plants/groups">
+                            <div class="p-item dropdown-item-hidden">groups</div>
+                        </a>
+                        <a href="/plants/families">
+                            <div class="p-item dropdown-item-hidden">families</div>
+                        </a>
+                    </aside>
                 </div>
-            </div>
-            <div class='navbar-item-container'><a>
-                    <div class="navbar-item" id="navbar-math">Math</div>
-                    </a>
-                    <div id="math-dropdown" class="dropdown-hidden">
-                        <a href="/math/statistics">
-                            <div class="m-item dropdown-item-hidden">STATISTICS</div>
+                <div class='navbar-item-container'><a>
+                        <div class="navbar-item" id="navbar-math">Math</div>
                         </a>
-                        <a href="/math/calculus">
-                            <div class="m-item dropdown-item-hidden">CALCULUS</div>
-                        </a>
-                        <a href="/math/linear-algebra">
-                            <div class="m-item dropdown-item-hidden">LINEAR ALGEBRA</div>
-                        </a>
+                        <div id="math-dropdown" class="dropdown-hidden">
+                            <a href="/math/statistics">
+                                <div class="m-item dropdown-item-hidden">STATISTICS</div>
+                            </a>
+                            <a href="/math/calculus">
+                                <div class="m-item dropdown-item-hidden">CALCULUS</div>
+                            </a>
+                            <a href="/math/linear-algebra">
+                                <div class="m-item dropdown-item-hidden">LINEAR ALGEBRA</div>
+                            </a>
+                        </div>
                     </div>
+                <div class="right-links">
+                <%if(!currentUser){%>
+                    <a href="/login" class="">Login</a>
+                    <a href="/register" class="">Register</a>
+                    <%}else{%>
+                        <a id="signed-in-text">Signed In As '<%=currentUser.username%>'</a>
+                        <a href="/logout" class="">Logout</a>
+                    <%}%>
                 </div>
-            <div class="right-links">
-            <%if(!currentUser){%>
-                <a href="/login" class="">Login</a>
-                <a href="/register" class="">Register</a>
-                <%}else{%>
-                    <a id="signed-in-text">Signed In As '<%=currentUser.username%>'</a>
-                    <a href="/logout" class="">Logout</a>
-                <%}%>
+
+
             </div>
 
 
-        </div>
-
-
-    </nav>
+        </nav>
+    </header>
 
 
 

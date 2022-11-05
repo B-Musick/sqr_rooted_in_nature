@@ -4,6 +4,7 @@
         <div id="<%=filterType%>-filter-label">
             <%=filterType%>:
         </div>
+        <!-- Set up dropdown for the filter bar passed -->
         <select name="<%=filterType%>" id="<%=filterType%>-filter">
             <option value="none">none</option>
             <%filterValues[filterType].forEach(dropdownVal=>{%>
@@ -16,17 +17,17 @@
 
                 -->
                 <%if(query[filterType]==dropdownVal){%>
-                    <!-- If currently selected to filter, add 'selected' -->
+                    <!-- If currently a query from query string matches filter, selected to dropdown, add 'selected' -->
                     <option value="<%=dropdownVal%>" selected>
                         <%=dropdownVal%>
                     </option>
-                    <%}else{%>
+                <%}else{%>
                         <!-- Otherwise just display none -->
                         <option value="<%=dropdownVal%>">
                             <%=dropdownVal%>
                         </option>
-                        <%}%>
-                            <%})%>
+                <%}%> <!-- endif -->
+            <%})%> <!-- end for loop -->
         </select>
     </div>
-    <%})%>
+<%})%> <!-- end for loop-->

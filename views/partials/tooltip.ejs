@@ -23,15 +23,16 @@
                                 <% if(parseInt(result)){ %>
                                     <a href="?key_val=<%=result %>">
                                         <span class="next-button">Next</span></a>
-</div>
-<% }else{ %>
-    <!-- If its a word then its the family name https://en.wikipedia.org/wiki -->
-    <a href="../families/<%= result %>">
-        <span class="next-button">
-            <%= result %>
-        </span></a>
-    <a href="https://en.wikipedia.org/wiki/<%= result %>">
-        <span class="next-button">Wikipedia</span></a>
-    <% } %>
-
         </div>
+                <% }else{ %>
+                    <!-- If its a word then its the family name https://en.wikipedia.org/wiki -->
+                    <a href="../families/<%= result %>">
+                        <span class="next-button">
+                            <%= result %>
+                        </span></a>
+                    <a href="https://en.wikipedia.org/wiki/<%= result %>">
+                        <span class="next-button">Wikipedia</span>
+                    </a>
+                <% } %>
+
+</div>
