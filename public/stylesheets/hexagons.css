@@ -1,0 +1,258 @@
+:root {
+    --polygon-color: #05386b;
+    --plants-hex: rgb(131, 7, 7);
+    --about-hex: rgb(42, 124, 201);
+    --math-hex: rgb(132, 111, 158);
+    --science-hex: rgb(221, 215, 127);
+    --login-hex: rgb(67, 92, 82);
+    --hover-col: rgb(50, 58, 55);
+}
+
+a {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    margin: -15px;
+    text-decoration: none;
+    color: white;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    height: 100vh;
+    width: 100vw;
+}
+
+.title-letter {
+    padding-top: 0 !important;
+    font-size: 60px;
+}
+
+svg {
+    width: 100vw;
+    height: 100vh;
+}
+
+.poly {
+    background-color: aqua;
+}
+
+.poly-container {
+    position: absolute;
+}
+
+#full-page {
+    padding: 0;
+    margin: 0;
+    background-color: rgb(116, 114, 114);
+    width: 100%;
+    height: 100%;
+
+    /* So background remains the same size */
+    position: fixed;
+    overflow: scroll;
+}
+
+/* Draw the normal hexagon */
+.hexagon {
+    width: 100px;
+    height: 57.735px;
+    background: var(--polygon-color);
+    position: relative;
+    border-top: 1px solid var(--polygon-color);
+    border-bottom: 1px solid var(--polygon-color);
+    /* background: transparent; */
+}
+
+.hexagon::before {
+    content: "";
+    position: absolute;
+    top: -28.6px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-bottom: 28.8675px solid var(--polygon-color);
+
+}
+
+.hexagon::after {
+    content: "";
+    position: absolute;
+    bottom: -28.65px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+    border-top: 28.8675px solid var(--polygon-color);
+}
+
+.scale {
+    transform: scale(0.4);
+    /* Equal to scaleX(0.7) scaleY(0.7) */
+    background-color: var(--polygon-color);
+}
+
+.scale-large {
+    transform: scale(0.8);
+    /* Equal to scaleX(0.7) scaleY(0.7) */
+    background-color: var(--polygon-color);
+}
+
+/* Hover over hexagon, need classes for before and after */
+.scale:hover {
+    background-color: var(--hover-col);
+    border-top: 1px solid var(--hover-col);
+    border-bottom: 1px solid var(--hover-col);
+    font-size: large;
+}
+
+.scale:hover:after {
+    content: "";
+    border-top: 28.8675px solid var(--hover-col);
+}
+
+.scale:hover:before {
+    content: "";
+    border-bottom: 28.8675px solid var(--hover-col);
+}
+
+/************************ Red Tab ************************/
+.plants-hex {
+    border-bottom: 28.8675px solid var(--plants-hex);
+    background-color: var(--plants-hex);
+    border-top: 1px solid var(--plants-hex);
+    border-bottom: 1px solid var(--plants-hex);
+}
+
+.plants-hex::after {
+    border-top: 28.8675px solid var(--plants-hex);
+}
+
+.plants-hex::before {
+    border-bottom: 28.8675px solid var(--plants-hex);
+}
+
+/************************ about Tab ************************/
+
+.about-hex {
+    border-bottom: 28.8675px solid var(--about-hex);
+    background-color: var(--about-hex);
+    border-top: 1px solid var(--about-hex);
+    border-bottom: 1px solid var(--about-hex);
+}
+
+.about-hex::after {
+    border-top: 28.8675px solid var(--about-hex);
+}
+
+.about-hex::before {
+    border-bottom: 28.8675px solid var(--about-hex);
+}
+
+/************************ Green Tab ************************/
+
+.math-hex {
+    border-bottom: 28.8675px solid var(--math-hex);
+    background-color: var(--math-hex);
+    border-top: 1px solid var(--math-hex);
+    border-bottom: 1px solid var(--math-hex);
+}
+
+.math-hex::after {
+    border-top: 28.8675px solid var(--math-hex);
+}
+
+.math-hex::before {
+    border-bottom: 28.8675px solid var(--math-hex);
+}
+
+/************************ Yellow Tab ************************/
+
+.science-hex {
+    border-bottom: 28.8675px solid var(--science-hex);
+    background-color: var(--science-hex);
+    border-top: 1px solid var(--science-hex);
+    border-bottom: 1px solid var(--science-hex);
+}
+
+.science-hex::after {
+    border-top: 28.8675px solid var(--science-hex);
+}
+
+.science-hex::before {
+    border-bottom: 28.8675px solid var(--science-hex);
+}
+
+/************************ login Tab ************************/
+
+.login-hex {
+    border-bottom: 28.8675px solid var(--login-hex);
+    background-color: var(--login-hex);
+    border-top: 1px solid var(--login-hex);
+    border-bottom: 1px solid var(--login-hex);
+}
+
+.login-hex::after {
+    border-top: 28.8675px solid var(--login-hex);
+}
+
+.login-hex::before {
+    border-bottom: 28.8675px solid var(--login-hex);
+}
+
+/* Hover hex mini */
+.hover-hex {
+    border-bottom: 28.8675px solid var(--hover-col);
+    background-color: var(--hover-col);
+    border-top: 1px solid var(--hover-col);
+    border-bottom: 1px solid var(--hover-col);
+    font-size: larger;
+}
+
+.hover-hex::after {
+    border-top: 28.8675px solid var(--hover-col);
+}
+
+.hover-hex::before {
+    border-bottom: 28.8675px solid var(--hover-col);
+}
+
+/* When button originally hidden, associated with linke */
+.hide-button {
+    background-color: var(--polygon-color);
+    border-top: 1px solid var(--polygon-color);
+    border-bottom: 1px solid var(--polygon-color);
+    font-size: 0;
+}
+
+.hide-button::before {
+    border-bottom: 28.8675px solid var(--polygon-color);
+    font-size: 0;
+}
+
+.hide-button::after {
+    border-top: 28.8675px solid var(--polygon-color);
+    font-size: 0;
+}
+
+/* Social Media Buttons */
+.social-media a {
+    width: 100%;
+    height: 100%;
+    padding: 15px;
+    text-decoration: none;
+}
+
+.fa {
+    padding: 4px;
+    font-size: 60px;
+    width: 86px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--login-hex);
+}

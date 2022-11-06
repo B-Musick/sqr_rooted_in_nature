@@ -6,6 +6,12 @@
 }
 
 /******************* PHP   */
+:root {
+    --header-background: #05386b;
+    --font: #edf5e1;
+    --hover-color:#379683;
+}
+
 body {
     width: 100vw;
     height: 100vh;
@@ -22,13 +28,13 @@ body {
     right: 30px;
     top: 130px;
     font-family: 'VT323', monospace;
-    color: #fca349;
+    color: var(--font);
     font-size: 50px;
 }
 
 .navbar {
     padding-top: 260px;
-    background-color: rgb(25, 98, 255);
+    background-color: var(--header-background);
     width: 100%;
     height: 40px;
     font-family: 'VT323', monospace;
@@ -50,13 +56,12 @@ body {
 }
 
 .navbar-item:hover {
-    background-color: grey;
+    background-color: var(--hover-color);
 }
 
 .navbar-links a {
     height: 100%;
-
-    color: #fca349;
+    color: var(--font);
     text-decoration: none;
 }
 
@@ -66,7 +71,7 @@ body {
 }
 
 rect {
-    fill: #fca349;
+    fill: var(--font);
 }
 
 .right-links {

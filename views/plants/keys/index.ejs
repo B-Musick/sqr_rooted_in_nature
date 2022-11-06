@@ -1,7 +1,7 @@
 <%- include('../../partials/header') %>
     <div id="key-page-title">plant key</div>
     <div id="key-page-container">
-        <div id="group-key-selection-container">
+        <div class="key-category-container" id="group-key-selection-container">
             <div id="group-key-selection-title">GROUPS</div>
             <div id="group-key-selection-choices">
                 <% Object.keys(groups).forEach(group=>{ %>
@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        <div id="family-key-selection-container">
+        <div class="key-category-container" id="family-key-selection-container">
             <div id="family-key-selection-title">FAMILIES</div>
             <div id="family-keys-container">
                 <% Object.keys(groups).forEach(group=>{ %>

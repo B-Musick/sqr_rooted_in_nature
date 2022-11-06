@@ -1,25 +1,20 @@
-#plant-dropdown {
-    position: absolute;
-    height: 300px;
-    display: block;
-    z-index: 1;
+:root {
+    --nav-item-background: #05386b;
+    --page-background: #5cdb95;
+    --font: #edf5e1;
 }
 
-#math-dropdown {
-    position: absolute;
-    height: 300px;
-    display: block;
+
+.navbar-item-container{
     z-index: 1;
 }
 
 .dropdown-item {
-    background-color: rgb(133, 169, 245);
-    border: solid 1px rgb(25, 98, 255);
+    color:var(--font);
+    background-color: var(--nav-item-background);
     padding: 5px;
     padding-right: 30px;
     z-index: 1;
-
-
 }
 
 .dropdown-item a {

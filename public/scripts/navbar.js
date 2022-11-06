@@ -98,6 +98,8 @@ let createDropdownItems = (name, items) => {
 */
 let home = newDropdown('home','/');
 let about = newDropdown('about', '#about');
+let footer = newDropdown('contact', '#footer');
+
 
 let plant = newDropdown('plants', null,'create', 'view', 'keys', 'groups', 'families');
 let math = newDropdown('math', null,'linear algebra', 'calculus', 'statistics');
