@@ -31,28 +31,29 @@
  * Navbar items are added to /views/partials/header.ejs
  * To create new dropdown and items, just call the newDropdown method
 */
-let newDropdown = (name, ...items) => {
+let newDropdown = (name, link,...items) => {
     /************************* CREATE NEW NAVBAR LINK *************************/
     let newDropdown = createDropdown(); // Create the new dropdown
 
     // Add the dropdown anchor, makes it clickable, add the navbar name
-    let dropdownAnchor = createDropdownLink(name);
+    let dropdownAnchor = createDropdownLink(name,link);
 
     addToNavbar(newDropdown, dropdownAnchor); // Add dropdown to navbar
 
     /************************** CREATE DROPDOWN ITEMS *************************/
     // Create new div's for the dropdown items, they are hidden until clicked
-    let dropdownItems = createDropdownItems(name, items)[0];
+    let dropdownItems = createDropdownItems(name, items);
     let itemName = dropdownItems[1];
+    console.log(dropdownItems);
 
     // Add the dropdown items to the link its associated
-    newDropdown.appendChild(dropdownItems);
+    newDropdown.appendChild(dropdownItems[0]);
 
     /*********************** DROPDOWN CLICK LOGIC *****************************/
     let elementVariables = {
         button: document.getElementById('navbar-' + name.toLowerCase()),
         dropdown: document.getElementById(name.toLowerCase() + '-dropdown'),
-        dropdownItems: document.querySelectorAll('.' + itemName)
+        dropdownItems: document.querySelectorAll("." + itemName)
     }
 
     elementVariables['button'].addEventListener('click', () => {
@@ -71,14 +72,17 @@ let createDropdown = () => {
     return newDropdown;
 }
 
-let createDropdownLink = (name) => {
+let createDropdownLink = (name,href) => {
     // Create link to the main clickable name that will always be shown
     let dropdownAnchor = document.createElement('a');
+    if(href)
+        dropdownAnchor.setAttribute('href',href);
     let navbarItem = document.createElement('div');
     navbarItem.setAttribute('class', 'navbar-item');
     navbarItem.setAttribute('id', 'navbar-' + name.toLowerCase());
     navbarItem.textContent = name.charAt(0).toUpperCase() + name.substring(1);
-    return dropdownAnchor.appendChild(navbarItem);
+    dropdownAnchor.appendChild(navbarItem)
+    return dropdownAnchor;
 }
 
 let addToNavbar = (newDropdown, dropdownAnchor) => {
@@ -92,7 +96,7 @@ let addToNavbar = (newDropdown, dropdownAnchor) => {
 
 let createDropdownItems = (name, items) => {
     let dropdownItems = document.createElement('div');
-    dropdownItems.setAttribute('class', 'dropdown-hidden dropdown');
+    dropdownItems.setAttribute('class', 'dropdown-hidden');
     dropdownItems.setAttribute('id', name.toLowerCase() + '-dropdown');
 
     let itemName = name.charAt(0).toLowerCase() + name.charAt(1) + '-item'; // Used to access the individual item names in click
@@ -108,7 +112,7 @@ let createDropdownItems = (name, items) => {
 
         // Originally hidden
         let itemNameDiv = document.createElement('div');
-        itemNameDiv.setAttribute('class', itemName + ' dropdown-item');
+        itemNameDiv.setAttribute('class', itemName + ' dropdown-item-hidden');
         itemNameDiv.textContent = item.toUpperCase(); // Add the text to the div item
 
         itemAnchor.appendChild(itemNameDiv); // Append the name to the anchor
@@ -118,11 +122,14 @@ let createDropdownItems = (name, items) => {
 }
 
 /**************************** DROPDOWN ITEMS *******************************
- * newDropdown('main dropdown list name', ...list items)
+ * newDropdown('main dropdown list name', 'If the main dropdown button is its own link', ...list items)
 */
-let plant = newDropdown('plants', 'create', 'view', /*'keys', 'groups', 'families'*/);
-let math = newDropdown('math', 'linear algebra', 'calculus', 'statistics');
-let science = newDropdown('science', 'chemistry', 'genetics');
+let home = newDropdown('home','/');
+let about = newDropdown('about', '#about');
+
+let plant = newDropdown('plants', null,'create', 'view', 'keys', 'groups', 'families');
+let math = newDropdown('math', null,'linear algebra', 'calculus', 'statistics');
+let science = newDropdown('science', null,'chemistry', 'genetics');
 
 
 

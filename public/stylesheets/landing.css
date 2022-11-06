@@ -3,8 +3,6 @@
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-end;
     background-image: url('https://i.imgur.com/YYFuJvr.jpg?1');
     background-size: cover;
 }
@@ -21,5 +19,9 @@
     left: 30px;
     font-family: 'VT323', monospace;
     font-size: 50px;
+    color: #fca349;
+}
+
+#quote-section{
     color: #fca349;
 }
