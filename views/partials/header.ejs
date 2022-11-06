@@ -44,8 +44,8 @@
 
         </svg>
         <nav class="navbar">
-            <div class="navbar-links">
-                <div class='navbar-item-container'><a href="/">
+            <div id="navbar-links" class="navbar-links">
+                <!-- <div class='navbar-item-container'><a href="/">
                         <div class="navbar-item">Home</div>
                     </a></div>
                 <div class='navbar-item-container'>
@@ -54,7 +54,7 @@
                             Plants
                         </div>
                     </a>
-                    <aside id="plant-dropdown" class="dropdown-hidden">
+                    <div id="plant-dropdown" class="dropdown-hidden">
                         <a href="/plants/new">
                             <div class="p-item dropdown-item-hidden">create</div>
                         </a>
@@ -70,8 +70,9 @@
                         <a href="/plants/families">
                             <div class="p-item dropdown-item-hidden">families</div>
                         </a>
-                    </aside>
+                    </div>
                 </div>
+
                 <div class='navbar-item-container'><a>
                         <div class="navbar-item" id="navbar-math">Math</div>
                         </a>
@@ -86,21 +87,17 @@
                                 <div class="m-item dropdown-item-hidden">LINEAR ALGEBRA</div>
                             </a>
                         </div>
-                    </div>
+                    </div> -->
                 <div class="right-links">
-                <%if(!currentUser){%>
-                    <a href="/login" class="">Login</a>
-                    <a href="/register" class="">Register</a>
+                    <%if(!currentUser){%>
+                        <a href="/login" class="">Login</a>
+                        <a href="/register" class="">Register</a>
                     <%}else{%>
                         <a id="signed-in-text">Signed In As '<%=currentUser.username%>'</a>
                         <a href="/logout" class="">Logout</a>
                     <%}%>
                 </div>
-
-
             </div>
-
-
         </nav>
     </header>
 
