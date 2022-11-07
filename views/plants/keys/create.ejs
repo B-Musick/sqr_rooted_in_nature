@@ -1,0 +1,24 @@
+<%- include('../../partials/header') %>
+    <!--------------------------- FILE INPUT  ----------------------------->
+    <section id="fileinput" id="outer-container">
+        <div class="container-header"><span>Input JSON file</span></div>
+        <div id="fileinput-inner-container" class="right-inner-container">
+            <div id="fileInput">
+                <!-- Where file is selected, accepts only .csv files -->
+                <input id='fileItem' type="file" accept=".json">
+            </div>
+            <form action="/plants/keys" method="POST">
+                <div class="form-item">
+                    <span class="form-item-title"></span>
+                    <span><input id="plant-key-input" type="text" name="jsonKey" placeholder="Plant Key JSON"><br></span>
+                </div>
+                <input class="form-item" type="submit" name="submit" id="submit-button">
+
+            </form>
+        </div>
+    </section>
+    <section id="show-json-file-output">
+
+    </section>
+    <script src="/scripts/plant_keys/key_creator.js"></script>
+<%- include('../../partials/footer') %>

@@ -3,6 +3,7 @@ var router = express.Router();
 
 // SCHEMA MODEL IMPORTS
 var Plant = require('../models/plant');
+var PlantKey = require('../models/plantkey');
 
 // IMPORT MIDDLEWARE
 var middleware = require('../middleware');
@@ -49,6 +50,21 @@ router.get('/keys', (req, res) => {
 
     res.render('plants/keys/index', { groups })
 })
+
+router.get('/keys/create', (req, res) => {
+    // This route allows user to submit a file and a key will be created
+    res.render('plants/keys/create')
+});
+
+router.post('/keys', (req,res)=>{
+    var newPlantKey = {
+        key: JSON.parse(req.body.jsonKey)
+    }
+
+    PlantKey.create(newPlantKey, (err, plantKey) => {
+        err ? console.log(err) : process.env.NODE_ENV == 'test' ? res.json({ plantKey }) : res.redirect('/plants/keys');
+    });
+});
 
 router.get('/keys/:group', (req, res) => {
     let key_val = req.query.key_val || "01"; // Take the query parameter and access the binomial key

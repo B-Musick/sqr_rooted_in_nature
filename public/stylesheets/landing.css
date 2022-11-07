@@ -1,15 +1,21 @@
+:root {
+    --font: #05386b;
+    --page-background: #5cdb95;
+}
+
 #landing-page-container {
     height: 60%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    background-image: url('https://i.imgur.com/YYFuJvr.jpg?1');
+    /* background-image: url('https://i.imgur.com/YYFuJvr.jpg?1'); */
+    background-color: var(--page-background);
     background-size: cover;
 }
 
 .rectangle {
     height: 10px;
-    background-color: #fca349;
+    background-color: var(--font);
     position: relative;
 }
 
@@ -19,11 +25,15 @@
     left: 30px;
     font-family: 'VT323', monospace;
     font-size: 50px;
-    color: #fca349;
+    color: var(--font);
 }
 
 #quote-section{
-    color: #fca349;
+    color: var(--font);
     padding: 10%;
     font-size: 2.5vw;
+}
+
+.hidden-section{
+    display:none;
 }
