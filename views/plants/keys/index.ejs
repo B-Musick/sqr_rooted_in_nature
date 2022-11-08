@@ -39,5 +39,25 @@
                 <%});%>
             </div>
         </div>
+        <div class="key-category-container" id="user-created-key-selection-container">
+            <div id="user-created-key-selection-title">Users Keys</div>
+            <% foundPlantKeys.forEach(keyObj=>{ %>
+                <div style="margin-bottom: 25px;">
+                    <div id="group-title">
+                        <%= keyObj['key']['name']%>
+                    </div>
+                    <div id="family-key-selection-container">
+                        <!-- This will go through the /keys/:id route to build the key -->
+                        <a href="/plants/keys/id/<%=keyObj._id%>">
+                            <div>
+                                <%=keyObj['key']['name']%>
+                            </div>
+                        </a>
+                    </div>
+                
+                </div>
+                <div></div>
+            <% }); %>
+        </div>
     </div>
 <%- include('../../partials/footer') %>

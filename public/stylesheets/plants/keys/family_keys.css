@@ -1,7 +1,15 @@
+:root {
+    --font: #edf5e1;
+    --page-background: #5cdb95;
+    --hover-font: #edf5e1;
+    --header-button-color: #379683;
+    --next-button: #8ee4af;
+}
+
 body{
     width: 100vw;
     height: 100vh;
-    background-color: rgb(161, 245, 241);
+    background-color: var(--page-background);
 
 }
 
@@ -17,10 +25,10 @@ body{
     width: 100%;
     font-size: 40px;
     
-    background-color: lightseagreen;
+    background-color: var(--header-button-color);
     height: 50px;
     padding: 20px;
-    color: rgb(161, 245, 241);
+    color: var(--hover-font);
 
 }
 #key-choice-container{
@@ -29,7 +37,7 @@ body{
 .key-choice{
     margin-top: 20px;
     padding: 15px;
-    background-color: lightseagreen;
+    background-color: var(--header-button-color);
 }
 .key-choice a{
     text-decoration: none;
@@ -43,7 +51,7 @@ body{
     padding: 2px 5px;
     border-radius: 10px;
     margin-top: 1px;
-    background-color: rgb(19, 110, 106);
+    background-color: var(--next-button);
     color: white;
 }
 
@@ -63,7 +71,7 @@ body{
     -webkit-border-radius:6px;
     border-radius:6px;
     color:black;
-    background:white; 
+    background:var(--hover-font); 
     
     }
 

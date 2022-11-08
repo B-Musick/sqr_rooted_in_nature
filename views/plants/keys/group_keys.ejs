@@ -1,24 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="/stylesheets/plants/keys/family_keys.css">
-</head>
-
-<body>
+<%- include('../../partials/header') %>
     <div id="plant-family-key-container">
         <div id="family-key-title">
             <%=key_obj['name']%>
         </div>
         <div id="key-choice-container">
             <!-- Set the choices for the a sentences -->
-            <%- include('../../partials/tooltip',{sentence:a_sentence,result:a_result,dictionary:dictionary,key_obj, group, key_val})%>
+            <%- include('../../partials/tooltip',{sentence:a_sentence,result:a_result,dictionary:dictionary,key_obj, key_val})%>
 
             <!-- Set the choices for the b sentences -->
-            <%- include('../../partials/tooltip',{sentence:b_sentence,result:b_result,dictionary:dictionary,key_obj, group, key_val}) %>
+            <%- include('../../partials/tooltip',{sentence:b_sentence,result:b_result,dictionary:dictionary,key_obj, key_val}) %>
         </div>
     </div>
 </body>

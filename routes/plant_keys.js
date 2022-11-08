@@ -46,9 +46,13 @@ router.get('/groups/:group', (req, res) => {
 router.get('/keys', (req, res) => {
     let groups = { ferns: { name: 'Ferns And Allies', group: 'ferns', families: ['Isoetaceae'] }, woody: { name: 'Woody Plants', group: 'woody', families: ['Isoetaceae'] }, aquatic: { name: 'Aquatic Plants', group: 'aquatic', families: ['Isoetaceae'] } };
 
+    PlantKey.find({}, (err, foundPlantKeys) => {
+  
+        err ? console.log(err) : process.env.NODE_ENV == 'test' ? res.json({ foundPlantKeys }): res.render('plants/keys/index', { groups,foundPlantKeys });
+    });
     // let groups = { woody: { name: 'Woody Plants', group: 'woody', families: ['Isoetaceae'] } };
 
-    res.render('plants/keys/index', { groups })
+    
 })
 
 router.get('/keys/create', (req, res) => {
@@ -67,28 +71,63 @@ router.post('/keys', (req,res)=>{
 });
 
 router.get('/keys/:group', (req, res) => {
-    let key_val = req.query.key_val || "01"; // Take the query parameter and access the binomial key
-    console.log(key_val)
-    let group = req.params.group;
-    console.log(group)
-    let key_obj = keys[group];
-    console.log(key_obj)
-    // Get the sentences
-    let a_sentence = key_obj['key'][key_val]['a']['sentence'];
-    let b_sentence = key_obj['key'][key_val]['b']['sentence'];
+    PlantKey.find({}, (err, foundPlantKeys) => {
+        // Loop through each key and add an index
 
-    // Split sentences into array to loop through
-    let split_a_sentence = a_sentence.split(` `);
-    let split_b_sentence = b_sentence.split(` `);
+        let key_val = req.query.key_val || "01"; // Take the query parameter and access the binomial key
 
-    // The final linke to the next place
-    let a_result = key_obj['key'][key_val]['a']['result'];
-    let b_result = key_obj['key'][key_val]['b']['result'];
-    console.log(a_result)
-    console.log(split_a_sentence)
+        let group = req.params.group;
 
+        let key_obj = keys[group];
 
-    res.render('plants/keys/group_keys', { key_obj, group, key_val, a_result, b_result, a_sentence: split_a_sentence, b_sentence: split_b_sentence, dictionary });
+        let extractedData = extractKeyDataFromJSON(key_obj, key_val);
+
+        err ? console.log(err) : process.env.NODE_ENV == 'test' ? res.json({ foundPlantKeys }) : res.render('plants/keys/group_keys', { key_obj, group, key_val, a_result:extractedData.a_result, b_result:extractedData.b_result, a_sentence: extractedData.split_a_sentence, b_sentence: extractedData.split_b_sentence, dictionary });
+        
+    });
 });
 
+/**
+ * User created keys 
+ */
+router.get('/keys/id/:id',(req,res)=>{
+    let key_val = req.query.key_val || "01"; // Take the query parameter and access the binomial key
+
+    PlantKey.findById(req.params.id, (err, foundPlantKey) => {
+        // Find the associated plant key by id
+        key_obj = foundPlantKey.key;
+
+        let extractedData = extractKeyDataFromJSON(key_obj,key_val);
+    
+        err ? console.log(err) : process.env.NODE_ENV == 'test' ? res.json({ foundPlantKey }) : res.render('plants/keys/group_keys', { key_obj, key_val, a_result:extractedData.a_result, b_result:extractedData.b_result, a_sentence: extractedData.split_a_sentence, b_sentence: extractedData.split_b_sentence, dictionary });
+    });
+})
+
+/**
+ * @definition Will extract key data from the JSON file, including the a and b sentences, 
+ * it will split these sentences into array so that any special terms can be made into a tooltip.
+ * The results are extracted as well for when the user chooses 'a' they will go to the 
+ * 'a' result, same for the 'b' result
+ * 
+ * @param {Object} key_obj This is the object containing the plant key JSON 
+ * @param {Integer} key_val This contains the value of the location in the binomial key to go 
+ *                          to within the JSON
+ */
+function extractKeyDataFromJSON(key_obj,key_val){
+    let returnData = {}
+
+    // Get the sentences to split
+    a_sentence = key_obj['key'][key_val]['a']['sentence'];
+    b_sentence = key_obj['key'][key_val]['b']['sentence'];
+
+    // Split sentences into array to loop through
+    returnData['split_a_sentence'] = a_sentence.split(` `);
+    returnData['split_b_sentence'] = b_sentence.split(` `);
+
+    // The final linke to the next place
+    returnData['a_result'] = key_obj['key'][key_val]['a']['result'];
+    returnData['b_result'] = key_obj['key'][key_val]['b']['result'];
+
+    return returnData;
+}
 module.exports = router;
