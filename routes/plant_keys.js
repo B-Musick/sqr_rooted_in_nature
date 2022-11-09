@@ -70,38 +70,47 @@ router.post('/keys', (req,res)=>{
     });
 });
 
-router.get('/keys/:group', (req, res) => {
+/**
+ * @description Note the query string type={value} where the 'value' is used in the API to 
+ * determine how to load the key either by [id,group,family].
+ * The ':id' parameter will either be:
+ *      1. group name if type=group
+ *      2. family name if type=family
+ *      3. id if type=id
+ * 
+ */
+router.get('/keys/:id', (req, res) => {
     PlantKey.find({}, (err, foundPlantKeys) => {
         // Loop through each key and add an index
-
         let key_val = req.query.key_val || "01"; // Take the query parameter and access the binomial key
+        let type = req.query.type;
+        let dynamicDataToPass = {};
+        if(type=="group"){
+            let group = req.params.id;
 
-        let group = req.params.group;
+            let key_obj = keys[group];
 
-        let key_obj = keys[group];
+            let extractedData = extractKeyDataFromJSON(key_obj, key_val);
 
-        let extractedData = extractKeyDataFromJSON(key_obj, key_val);
+            err ? console.log(err) : process.env.NODE_ENV == 'test' ? res.json({ foundPlantKeys }) : res.render('plants/keys/group_keys', { key_obj, group, key_val, a_result: extractedData.a_result, b_result: extractedData.b_result, a_sentence: extractedData.split_a_sentence, b_sentence: extractedData.split_b_sentence, dictionary,type });
+        }else if(type=="id"){
+            let id = req.params.id;
+            PlantKey.findById(id, (err, foundPlantKey) => {
+                // Find the associated plant key by id
+                key_obj = foundPlantKey.key;
 
-        err ? console.log(err) : process.env.NODE_ENV == 'test' ? res.json({ foundPlantKeys }) : res.render('plants/keys/group_keys', { key_obj, group, key_val, a_result:extractedData.a_result, b_result:extractedData.b_result, a_sentence: extractedData.split_a_sentence, b_sentence: extractedData.split_b_sentence, dictionary });
+                let extractedData = extractKeyDataFromJSON(key_obj, key_val);
+
+                err ? console.log(err) : process.env.NODE_ENV == 'test' ? res.json({ foundPlantKey }) : res.render('plants/keys/group_keys', { key_obj, key_val, a_result: extractedData.a_result, b_result: extractedData.b_result, a_sentence: extractedData.split_a_sentence, b_sentence: extractedData.split_b_sentence, dictionary,type });
+            });
+        }else if(type=="family"){
+            
+        }
+
+
         
     });
 });
-
-/**
- * User created keys 
- */
-router.get('/keys/id/:id',(req,res)=>{
-    let key_val = req.query.key_val || "01"; // Take the query parameter and access the binomial key
-
-    PlantKey.findById(req.params.id, (err, foundPlantKey) => {
-        // Find the associated plant key by id
-        key_obj = foundPlantKey.key;
-
-        let extractedData = extractKeyDataFromJSON(key_obj,key_val);
-    
-        err ? console.log(err) : process.env.NODE_ENV == 'test' ? res.json({ foundPlantKey }) : res.render('plants/keys/group_keys', { key_obj, key_val, a_result:extractedData.a_result, b_result:extractedData.b_result, a_sentence: extractedData.split_a_sentence, b_sentence: extractedData.split_b_sentence, dictionary });
-    });
-})
 
 /**
  * @definition Will extract key data from the JSON file, including the a and b sentences, 

@@ -5,7 +5,9 @@
             <div id="group-key-selection-title">GROUPS</div>
             <div id="group-key-selection-choices">
                 <% Object.keys(groups).forEach(group=>{ %>
-                    <a href="keys/<%=groups[group].group%>">
+                    <!-- Note the query string type=group which is used in the 
+                    API to determine how to load the key  -->
+                    <a href="keys/<%=groups[group].group%>?type=group">
                         <div>
                             <%=groups[group].name%>
                         </div>
@@ -25,7 +27,7 @@
                         <div id="family-key-selection-container">
                             <%groups[group].families.forEach(family=>{ %>
                                 <div id="family-key-selection">
-                                    <a href="keys/<%=family%>">
+                                    <a href="keys/<%=family%>?type=family">
                                         <div id="family-name">
                                             <%=family%>
                                         </div>
@@ -48,7 +50,7 @@
                     </div>
                     <div id="family-key-selection-container">
                         <!-- This will go through the /keys/:id route to build the key -->
-                        <a href="/plants/keys/id/<%=keyObj._id%>">
+                        <a href="/plants/keys/<%=keyObj._id%>?type=id">
                             <div>
                                 <%=keyObj['key']['name']%>
                             </div>
