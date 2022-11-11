@@ -1,22 +1,11 @@
-/* Heade
-
-.alert{
-    margin-bottom: 0 !important;
-    width: 100vw;
-}
-
-/******************* PHP   */
+/* 
+/********************/
 :root {
-    --header-background: #05386b;
-    --font: #edf5e1;
-    --hover-color:#379683;
-}
-
-body {
-    width: 100vw;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
+    --navy-blue: rgb(0,55,104);
+    --beige: #edf5e1;
+    --dark-green:#379683;
+    --medium-green: #5cdb95;
+    --light-green:#8ee4af;
 }
 
 #navbar-svg {
@@ -27,18 +16,18 @@ body {
     position: absolute;
     right: 30px;
     top: 130px;
-    font-family: 'VT323', monospace;
-    color: var(--font);
+    color: var(--beige);
     font-size: 50px;
 }
 
 .navbar {
-    padding-top: 260px;
-    background-color: var(--header-background);
+    padding-top: 17.5em;
+    background-size: 100% 100%;
+    background-color: var(--navy-blue);
     width: 100%;
     height: 40px;
-    font-family: 'VT323', monospace;
-    font-size: 25px;
+    /* font-family: 'VT323', monospace; */
+    font-size: 1em;
 }
 
 .navbar-links {
@@ -56,12 +45,12 @@ body {
 }
 
 .navbar-item:hover {
-    background-color: var(--hover-color);
+    background-color: var(--dark-green);
 }
 
 .navbar-links a {
     height: 100%;
-    color: var(--font);
+    color: var(--beige);
     text-decoration: none;
 }
 
@@ -71,14 +60,33 @@ body {
 }
 
 rect {
-    fill: var(--font);
+    fill: var(--beige);
 }
 
 .right-links {
     position: absolute;
-    right: 10px;
+    right: 4.2em;
+    display: flex;
+    width: 285px;
+    justify-content: space-between;
+    padding-top: 0.8em;
 }
 
 #signed-in-text {
     color: greenyellow;
+}
+
+#fold-down-menu-icon-nav {
+    display: hidden;
+}
+
+#banner-name{
+    position:absolute;
+    background-image: url("../images/rin_banner_name.png");
+    background-size: 100% 100%;
+    right:0;
+    /* height: 100%; */
+    /* width: fit-content; */
+    height:20em;
+    width: 26em;
 }

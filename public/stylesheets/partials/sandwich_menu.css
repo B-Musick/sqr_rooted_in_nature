@@ -1,0 +1,89 @@
+:root{
+    --link-padding: 5px;
+}
+@media(min-width:800px){
+    #fold-down-menu-icon-nav {
+        display: none;
+    }
+
+    .sandwich_menu{
+        display:none;
+    }
+}
+
+/************************** Media Queries  **************************/
+
+/* Want to add sandwich menu when screen below certain size */
+@media(max-width: 800px) {
+    .sandwich_menu {
+            display: block;
+        }
+    #fold-down-menu-icon-nav {
+        display: block;
+        padding-left: 0.5em;
+        padding-right: 0.5em;
+        color: white;
+        padding-top: 0.2em;
+        padding-bottom: 0.25em;
+    }
+
+    #fold-down-menu-icon-nav:hover {
+        background-color: rgb(190, 169, 190);
+    }
+
+    /* 
+        Hide the values that show in the navbar, they will be in the condensed
+        sandwich bar 
+    */
+    .navbar-item-container{
+        display: none;
+    }
+    /************ FOLDING MENU *************/
+    #nav-bar-items {
+        /* Toggle display on to block to show the menu (hearder.js)*/
+        margin-top: 1.6em;
+        text-align: left !important;
+        width: 100%;
+        background-color: darkgray;
+        display: none;
+        width: fit-content;
+        position: absolute;
+        left: 0;
+        z-index: 1;
+    }
+
+    #nav-bar-items a {
+        /* Navbar items which will fold out when button clicked */
+        /* width:max-content; */
+        color: white;
+    }
+
+    #nav-list {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .nav-link {
+        text-decoration: none;
+        padding: var(--link-padding);
+
+        /* width: 100%;
+        height: 20px; */
+    }
+
+    .nav-link:hover {
+        background-color: rgb(183, 220, 240);
+        padding: var(--link-padding);
+    }
+
+    .nav-sublink{
+        /* Link that is associated with a larger category of link  */
+        padding: var(--link-padding);
+        font-size: 0.65em;
+    }
+
+    .nav-sublink:hover {
+        background-color: rgb(183, 220, 240);
+        padding: var(--link-padding);
+    }
+}

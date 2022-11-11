@@ -1,21 +1,23 @@
-:root {
-    --font: #05386b;
-    --page-background: #5cdb95;
+body{
+    font-family: 'Roboto', sans-serif;
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
 }
-
 #landing-page-container {
     height: 60%;
     width: 100%;
     display: flex;
     flex-direction: column;
     /* background-image: url('https://i.imgur.com/YYFuJvr.jpg?1'); */
-    background-color: var(--page-background);
+    background-color: var(--medium-green);
     background-size: cover;
 }
 
 .rectangle {
     height: 10px;
-    background-color: var(--font);
+    background-color: var(--beige);
     position: relative;
 }
 
@@ -23,13 +25,12 @@
     position: absolute;
     bottom: 230px;
     left: 30px;
-    font-family: 'VT323', monospace;
     font-size: 50px;
-    color: var(--font);
+    color: var(--beige);
 }
 
 #quote-section{
-    color: var(--font);
+    color: var(--beige);
     padding: 10%;
     font-size: 2.5vw;
 }

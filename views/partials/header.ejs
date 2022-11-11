@@ -12,7 +12,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ROOTED IN NATURE</title>
 
+    <!-- Google Fonts 'Roboto' -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    
     <!-- HEADER -->
+
     <link rel="stylesheet" href="/stylesheets/landing.css">
     <!-- <link rel="stylesheet" href="/stylesheets/hexagons.css"> -->
     <!------------------------------- HEADER/FOOTER --------------------------->
@@ -29,6 +35,9 @@
     <!-- Search bar -->
     <link rel="stylesheet" href="/stylesheets/partials/search-bar.css">
 
+    <!-- Sandwich Menu -->
+    <link rel="stylesheet" href="/stylesheets/partials/sandwich_menu.css">
+
     <!------------------------ PLANT STYLESHEETS ------------------------------->
     <link rel="stylesheet" href="/stylesheets/plants/show.css">
     <link rel="stylesheet" href="/stylesheets/plants/index.css">
@@ -38,26 +47,38 @@
     <link rel="stylesheet" href="/stylesheets/plants/keys/index.css">
     <link rel="stylesheet" href="/stylesheets/plants/keys/family_keys.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+        integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
 </head>
 
 <body>
     <header>
-        <div class="page-header">(RootedInNature)<sup>2</sup></div>
+        <!-- <div class="page-header">(RootedInNature)<sup>2</sup></div> -->
         <svg width="100vw" height="260px" id="navbar-svg">
 
         </svg>
+        <div id="banner-name">
+        
+        </div>
         <nav class="navbar">
+   
             <div id="navbar-links" class="navbar-links">
+
                 <div class="right-links">
                     <%if(!currentUser){%>
+                        <!-- If no user is currently signed in -->
                         <a href="/login" class="">Login</a>
                         <a href="/register" class="">Register</a>
                     <%}else{%>
-                        <a id="signed-in-text">Signed In As '<%=currentUser.username%>'</a>
+                        <!-- If user is signed in -->
+                        <a id="signed-in-text"><i class='fas fa-user-circle'></i><b> <%=currentUser.username%></b></a>
                         <a href="/logout" class="">Logout</a>
                     <%}%>
                 </div>
+                <%- include('./sandwich_menu') %>
+
             </div>
         </nav>
     </header>

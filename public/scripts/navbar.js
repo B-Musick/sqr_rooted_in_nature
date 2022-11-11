@@ -101,7 +101,7 @@ let about = newDropdown('about', '#about');
 let footer = newDropdown('contact', '#footer');
 
 
-let plant = newDropdown('plants', null,'create', 'view', 'keys', 'groups', 'families');
+let plant = newDropdown('plants', null,'new', 'view', 'keys', 'groups', 'families');
 let math = newDropdown('math', null,'linear algebra', 'calculus', 'statistics');
 let science = newDropdown('science', null,'chemistry', 'genetics');
 

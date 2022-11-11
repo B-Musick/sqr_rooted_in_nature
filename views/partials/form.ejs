@@ -4,12 +4,14 @@ passed should be {inputs,title:' ',backLink:' ',action:' '} -->
 
 <%- include ("./header") %>
     <div class="form-page">
-        <!-- Back link -->
-        <a class="back-button" href="<%=backLink%>">BACK</a>
+        <!-- Back button -->
+        <%- include ("./back-button",backLink) %>
+
+
         <div class="form-container">
             <form action="<%=action%>" method="POST">
                 <div class="form-title-container form-item">
-                    <h2><%=title%></h2>
+                    <h4><%=title%></h4>
                 </div>
                 
                 <%if(edit){%>

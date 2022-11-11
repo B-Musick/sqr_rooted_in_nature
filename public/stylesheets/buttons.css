@@ -1,16 +1,14 @@
 /************** Back Button *******/
 .back-button {
     margin-left: 20px;
-    font-family: 'VT323', monospace;
-    color: #49fc91 !important;
-    font-size: 25px;
+    color: var(--navy-blue) !important;
+    font-size: 1em;
     text-decoration: none;
+    text-transform: capitalize;
     padding: 5px;
-    border: 1px solid #49fc91 !important;
 }
 
 .back-button:hover {
     font-weight: bold;
-    border: 2px solid #49fc91 !important;
-
+    border: 2px solid var(--navy-blue) !important;
 }
