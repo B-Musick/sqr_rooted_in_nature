@@ -14,6 +14,7 @@
 
     /* Place the cards in the center of the screen */
     justify-content: space-evenly;
+    z-index: 1;
 }
 
 #plants-container {
