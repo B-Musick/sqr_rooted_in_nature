@@ -1,44 +1,37 @@
-:root {
-    --font: #edf5e1;
-    --page-background: #5cdb95;
-    --hover-font: #edf5e1;
-    --header-button-color: #379683;
-    --next-button: #8ee4af;
-}
-
 body{
     width: 100vw;
     height: 100vh;
-    background-color: var(--page-background);
-
+    background-color: var(--medium-green);
 }
 
 #plant-family-key-container{
+    /* Container for the entire plant key */
     width: 100%;
-    height: 100%;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
-#family-key-title{
-    text-align: center;
-    width: 100%;
-    font-size: 40px;
-    
-    background-color: var(--header-button-color);
-    height: 50px;
-    padding: 20px;
-    color: var(--hover-font);
 
+#key-page-title{
+    align-self: baseline;
+    width: fit-content;
+    padding-right: 1em;
+    border-radius: 0px 50px 50px 0px;
 }
 #key-choice-container{
+    /* Contain the two individual choices of the plant key */
     width: 500px;
 }
+
 .key-choice{
-    margin-top: 20px;
-    padding: 15px;
-    background-color: var(--header-button-color);
+    /* Individual choice container for binomial key */
+    margin-top: 1.1em;
+    padding: 1em;
+    background-color: var(--navy-blue);
+    color: var(--beige);
+    border-radius: 25px 25px 25px 25px;
 }
+
 .key-choice a{
     text-decoration: none;
     color: white;
@@ -47,24 +40,26 @@ body{
     margin-top: 1px;
 }
 .next-button{
-    
     padding: 2px 5px;
     border-radius: 10px;
     margin-top: 1px;
-    background-color: var(--next-button);
+    background-color: var(--dark-green);
     color: white;
 }
 
+/********************** Tooltip **********************/
 .tooltip:hover:after {
     content: attr(title);
 }
+
 .tooltip {
     /* https://aninnovativeweb.tumblr.com/post/820491172/semantic-tooltips-with-pure-css3-and-html5 
     https://www.scriptol.com/css/tooltip.php*/
-    border-bottom: 1px dotted #333;
+    border-bottom: 1px dotted rgb(235, 229, 229);
     position: relative;
     cursor: pointer;
-    }
+}
+
 .tooltip span {
     display:none;
     -moz-border-radius:6px;
@@ -72,12 +67,10 @@ body{
     border-radius:6px;
     color:black;
     background:var(--hover-font); 
-    
     }
 
 .tooltip:hover span {
     display:block;
-    
     position:absolute;
     top:0;
     left:0;
@@ -92,25 +85,14 @@ body{
     margin-left:32px;
     overflow:hidden;
     padding:8px;
-    }
-    .tooltip span img {
-        float:right;
-        position: relative;
-        right: 5px;
-        margin:0px 20px 8px 0;
-        padding: 5px;
-        width: 60px;
-        }
-/* .tooltip:hover:after {
-    content: attr(title);
-    position: absolute;
-    white-space: nowrap;
-    background: rgba(0, 0, 0, 0.85);
-    padding: 3px 7px;
-    color: #FFF;
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-    margin-left: 7px;
-    margin-top: -3px;
-    } */
+    background-color: aliceblue;
+}
+
+.tooltip span img {
+    float:right;
+    position: relative;
+    right: 5px;
+    margin:0px 20px 8px 0;
+    padding: 5px;
+    width: 60px;
+}

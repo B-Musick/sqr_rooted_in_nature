@@ -1,15 +1,14 @@
 <%- include('../../partials/header') %>
-    <div id="plant-family-key-container">
-        <div id="family-key-title">
-            <%=key_obj['name']%>
-        </div>
-        <div id="key-choice-container">
+    <main id="plant-family-key-container">
+        <div id="key-page-title"><i class="fa fa-solid fa-key"></i> <%=key_obj['name']%>
+</div>
+   
+        <section id="key-choice-container">
             <!-- Set the choices for the a sentences -->
             <%- include('../../partials/tooltip',{sentence:a_sentence,result:a_result,dictionary:dictionary,key_obj, key_val,type})%>
 
             <!-- Set the choices for the b sentences -->
             <%- include('../../partials/tooltip',{sentence:b_sentence,result:b_result,dictionary:dictionary,key_obj, key_val,type}) %>
-        </div>
-    </div>
-</body>
-</html>
+        </section>
+    </main>
+<%- include('../../partials/footer') %>

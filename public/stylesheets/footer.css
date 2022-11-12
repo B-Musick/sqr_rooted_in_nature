@@ -1,0 +1,51 @@
+
+footer {
+    --margin-right: 1em;
+    position: relative;
+    /* margin-top: -180px; */
+    /* negative value of footer height */
+    height: fit-content;
+    clear: both;
+    background-color: var(--navy-blue);
+    display: flex;
+    flex-direction: column;
+}
+
+#copyright-info{
+    align-self: end;
+    margin-right: var(--margin-right);
+}
+
+#copyright-info a{
+    text-decoration: underline;
+}
+
+footer a{
+    text-decoration: none;
+    color: var(--beige);
+}
+
+footer ul{
+    list-style: none;
+}
+
+footer nav{
+    display: flex;
+    align-items: flex-end;
+}
+
+footer li{
+    font-size: 0.8em;
+}
+nav h4{
+    margin:0;
+    padding: 0.1em 0;
+    color: lightgrey;
+    text-decoration: underline;
+}
+
+#other-footer-links{
+    /* Want this box to flex to the right side of page */
+    margin-left: auto;
+    margin-right: var(--margin-right);
+}

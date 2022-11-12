@@ -1,70 +1,100 @@
-.plant-box-container {
-    height: 81%;
-    width: 100%;
-    background-color: rgb(215, 213, 223);
+#plant-index-container{
     display: flex;
+    flex-direction: row;
+}
+.plant-box-container {
+    height: fit-content;
+    width: 100%;
+    display: flex;
+    padding-top: 1.5em;
+    padding-bottom: 1.5em;
     /* Allow plant boxes to start new row when needed */
     flex-wrap: wrap;
     /* Prevent the boxes from overlapping the footer when screen size changes */
-    overflow: auto;
 
     /* Place the cards in the center of the screen */
     justify-content: space-evenly;
 }
 
-.plant-card-container {
-    -webkit-box-shadow: 14px -1px 43px -15px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 14px -1px 43px -15px rgba(0, 0, 0, 0.75);
-    box-shadow: 14px -1px 43px -15px rgba(0, 0, 0, 0.75);
-    width: 200px;
-    height: 260px;
-    margin-top: 0.8rem;
-    background-color: rgb(25, 98, 255);
-    padding: 5px;
-    text-align: center;
-}
-
-.plant-card-container img {
-    margin-bottom: 5px;
-    width: 100%;
-    height: 140px;
-}
-
-h6 {
-    font-size: 13px !important;
-}
-
-.plant-card-body {
-
+#plants-container {
     display: flex;
-    width: 100%;
-    height: 120px;
-    flex-direction: column;
-
-    justify-content: space-between;
-
-
-
-
-
-}
-
-.plant-card-body h6 {
-    margin-top: 10px;
-}
-
-.plant-card-body a {
-    justify-self: flex-end;
-    margin-bottom: 17px;
-}
-
-.column {
-    /* Center the plant cards in their column so when get to mobile they are one row in the center
-    of the screen */
-    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
+    /* margin: 0 0.25rem; */
+    height: 5em;
+    position: absolute;
+    margin-top: 2em;
 }
 
+.plant-image {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -3;
+}
+
+.plant {
+    position: relative;
+    margin: 0.25em;
+    height: 14em;
+    /* max-width: 24em; */
+    text-decoration: none;
+    flex: 1;
+    flex: 1 1 160px;
+
+}
+
+.plant:nth-of-type(2n) {
+    flex: 3 3 260px;
+}
+
+.plant:nth-of-type(3n) {
+    flex: 2 2 240px;
+}
+
+#plant-index-container {
+    display: flex;
+}
+
+/******************* Button to toggle the form on and off *******************/
+#filter-button-container{
+    display:flex;
+    justify-content: space-between;
+}
+.plant-button{
+    background: var(--navy-blue);
+    margin-top: 0.2em;
+    color: var(--beige);
+    border: none;
+    padding: 0.2em;
+    padding-right: 3em;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    width: 7em;
+
+}
+#filter-toggle-button {
+    transition: width 1s;
+    transition-timing-function: ease-in-out;
+}
+
+#filter-toggle-button:hover {
+    transition: width 1s;
+    width: 14.2em;
+}
+
+.filter-button-pressed {
+    /* When user presses, want to animate it to grow a bit */
+    width: 14.2em !important;
+}
+
+#filter-container{
+    position:relative;
+    width: 100%;
+    z-index: 1;
+}
 /******************* HOVER IMAGE ******************
   * When hover image, it will show the species and dims the image
 */
@@ -89,4 +119,10 @@ h6 {
 .plant:hover .hidden-plant-info {
     /* Makes the hidden text visible */
     visibility: visible !important;
+}
+
+#search-containers {
+    /* Contains the actual search fields of the form */
+    display: flex;
+    flex-direction: column;
 }

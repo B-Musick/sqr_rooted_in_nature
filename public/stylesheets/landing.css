@@ -5,6 +5,14 @@ body{
     margin: 0;
     padding: 0;
 }
+
+main {
+    overflow: auto;
+    padding-bottom: 180px;
+    /* must be same height as the footer */
+    min-height: 100%;
+}
+
 #landing-page-container {
     height: 60%;
     width: 100%;

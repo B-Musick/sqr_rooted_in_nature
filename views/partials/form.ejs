@@ -1,9 +1,9 @@
 <!-- To add form to a route, just need to make an inputs=['values'] array and
 the values you want inputs for, then pass this to the render(). The final object
 passed should be {inputs,title:' ',backLink:' ',action:' '} -->
-
 <%- include ("./header") %>
-    <div class="form-page">
+    
+    <main class="form-page">
         <!-- Back button -->
         <%- include ("./back-button",backLink) %>
 
@@ -37,5 +37,5 @@ passed should be {inputs,title:' ',backLink:' ',action:' '} -->
                 <input class="form-item submit-button" type="submit">
             </form>
         </div>
-    </div>
+    </main>
 <%- include ("./footer") %>

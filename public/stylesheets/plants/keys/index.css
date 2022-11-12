@@ -1,126 +1,73 @@
 #key-page-title {
-    height: auto;
-    font-size: 40px;
-    /* text-align: center; */
-    background-color: lightgray;
-    border-bottom: 2px solid rgb(94, 92, 92);
-    color: rgb(94, 92, 92);
-    padding-top: 20px;
-    padding-left: 20px;
+    /* Title for the whole page */
+    font-size: 1.5em;
+    width: 8em;
+    color: var(--beige);
+    background-color: var(--navy-blue);
+    margin-top: 0.9em;
+    padding-bottom: 0.2em;
+    padding-top: 0.2em;
+    padding-left: 1em;
+    text-transform: capitalize;
 }
 
 #key-page-container {
-    width: 100%;
-    height: 100%;
-    background-color: lightgray;
+    /* Main container for the keys below the header */
+    --key-selection-background-color: darkgray;
     display: flex;
     justify-content: space-evenly;
+    flex-wrap: wrap;
+    text-transform: capitalize;
+}
+
+.key-selection-title{
+    /* Title of the type of key */
+    font-size: 1em;
 }
 
 .key-category-container{
-    margin: 2%;
+    margin: 1em;
+    font-size: 0.85em;
+    width: 25em;
+    background-color: var(--navy-blue);
+    height: fit-content;
 }
-#group-key-selection-title {
 
+.key-selection-title {
     border-bottom: 2px solid lightgray;
-    padding: 20px;
     text-align: center;
-    font-size: 2.5vw;
     color: white;
-
+    padding: 0.5em;
 }
 
-#group-key-selection-container {
-    height: min-content;
-    /* grid-column: 1/2;
-    width: 50%; */
-    flex:1;
-    background-color: darkgray;
-    font-size: 2.1vw;
-
+.key-selection-choices {
+    margin-left: 1.65em;
 }
 
-#group-key-selection-choices {
-
-    margin-top: 10px;
-    margin-left: 11%;
-
-}
-
-#group-key-selection-choices div {
-    background-color: darkgray;
-    padding: 5px;
+.key-name {
+    background-color: var(--key-selection-background-color);
+    padding: 0.15em;
     border-bottom: 1px solid lightgray;
 }
 
-#group-key-selection-choices a {
+.key-selection-choices a {
     text-decoration: none;
     color: white;
 }
 
-#group-key-selection-choices div:hover {
+.key-selection-choices div:hover {
     filter: brightness(125%);
 }
 
-#group-key-selection-choices a:hover {
+.key-selection-choices a:hover {
     color: rgb(143, 142, 142);
 }
 
-/* FAMILIES */
-#family-key-selection-container {
-    height: min-content;
-    flex:2;
-    background-color: darkgray;
-    font-size: 2.1vw;
-}
-
-#family-key-selection-title {
-    border-bottom: 2px solid lightgray;
-    padding: 20px;
-    text-align: center;
-    font-size: 2.5vw;
-    color: white;
-}
-
-#group-title {
-    border-bottom: 2px solid rgb(110, 106, 106);
-    padding: 10px 20px;
-    margin-left: 3%;
-    font-size: 2.5vw;
+.group-title {
+    border-bottom: 1px solid rgb(110, 106, 106);
+    margin-left: 1.65em;
     color: rgb(110, 106, 106);
-    width: inherit;
-    margin-bottom: 5px;
-
-}
-
-#family-key-selection-container {
-
-    /* width: 93%; */
-}
-
-#family-key-selection {
-    width: inherit;
-
-    margin-left: 6%;
-    border-bottom: 2px solid lightgray;
-
-}
-
-#family-key-selection a {
-    text-decoration: none;
-    color: white;
-}
-
-#family-name {
-    padding: 10px;
-}
-
-#family-key-selection:hover {
-    background-color: rgb(173, 172, 172);
-    filter: brightness(125%);
-}
-
-#family-key-selection a:hover {
-
-    color: rgb(143, 142, 142);
+    background-color: var(--key-selection-background-color);
+    font-size: 1em;
+    padding: 0.15em;
 }

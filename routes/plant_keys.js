@@ -92,7 +92,7 @@ router.get('/keys/:id', (req, res) => {
 
             let extractedData = extractKeyDataFromJSON(key_obj, key_val);
 
-            err ? console.log(err) : process.env.NODE_ENV == 'test' ? res.json({ foundPlantKeys }) : res.render('plants/keys/group_keys', { key_obj, group, key_val, a_result: extractedData.a_result, b_result: extractedData.b_result, a_sentence: extractedData.split_a_sentence, b_sentence: extractedData.split_b_sentence, dictionary,type });
+            err ? console.log(err) : process.env.NODE_ENV == 'test' ? res.json({ foundPlantKeys }) : res.render('plants/keys/binomial_keys', { key_obj, group, key_val, a_result: extractedData.a_result, b_result: extractedData.b_result, a_sentence: extractedData.split_a_sentence, b_sentence: extractedData.split_b_sentence, dictionary,type });
         }else if(type=="id"){
             let id = req.params.id;
             PlantKey.findById(id, (err, foundPlantKey) => {
@@ -101,7 +101,7 @@ router.get('/keys/:id', (req, res) => {
 
                 let extractedData = extractKeyDataFromJSON(key_obj, key_val);
 
-                err ? console.log(err) : process.env.NODE_ENV == 'test' ? res.json({ foundPlantKey }) : res.render('plants/keys/group_keys', { key_obj, key_val, a_result: extractedData.a_result, b_result: extractedData.b_result, a_sentence: extractedData.split_a_sentence, b_sentence: extractedData.split_b_sentence, dictionary,type });
+                err ? console.log(err) : process.env.NODE_ENV == 'test' ? res.json({ foundPlantKey }) : res.render('plants/keys/binomial_keys', { key_obj, key_val, a_result: extractedData.a_result, b_result: extractedData.b_result, a_sentence: extractedData.split_a_sentence, b_sentence: extractedData.split_b_sentence, dictionary,type });
             });
         }else if(type=="family"){
             

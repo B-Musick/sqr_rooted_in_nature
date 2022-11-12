@@ -1,65 +1,60 @@
 <%- include('../../partials/header') %>
-    <div id="key-page-title">plant key</div>
-    <div id="key-page-container">
-        <div class="key-category-container" id="group-key-selection-container">
-            <div id="group-key-selection-title">GROUPS</div>
-            <div id="group-key-selection-choices">
+    <!-- Plant Key title -->
+    <div id="key-page-title"><i class="fa fa-solid fa-key"></i> plant keys</div>
+
+    <!-- Container listing for group keys -->
+    <main id="key-page-container">
+        <section class="key-category-container" id="group-key-selection-container">
+            <div class="key-selection-title">groups</div>
+            <div class="key-selection-choices">
                 <% Object.keys(groups).forEach(group=>{ %>
                     <!-- Note the query string type=group which is used in the 
                     API to determine how to load the key  -->
                     <a href="keys/<%=groups[group].group%>?type=group">
-                        <div>
+                        <div class="key-name">
                             <%=groups[group].name%>
                         </div>
                     </a>
                     <% }); %>
             </div>
-        </div>
+        </section>
 
-        <div class="key-category-container" id="family-key-selection-container">
-            <div id="family-key-selection-title">FAMILIES</div>
+        <section class="key-category-container" id="family-key-selection-container">
+            <div class="key-selection-title">families</div>
             <div id="family-keys-container">
                 <% Object.keys(groups).forEach(group=>{ %>
-                    <div style="margin-bottom: 25px;">
-                        <div id="group-title">
+                    <div>
+                        <div class="group-title">
                             <%=groups[group].name%>
                         </div>
-                        <div id="family-key-selection-container">
+                        <div class="key-selection-choices">
                             <%groups[group].families.forEach(family=>{ %>
-                                <div id="family-key-selection">
+                                <div>
                                     <a href="keys/<%=family%>?type=family">
-                                        <div id="family-name">
+                                        <div class="key-name">
                                             <%=family%>
                                         </div>
                                     </a>
-
                                 </div>
-                                <% }) %>
+                            <% }) %>
                         </div>
-
                     </div>
                 <%});%>
             </div>
-        </div>
-        <div class="key-category-container" id="user-created-key-selection-container">
-            <div id="user-created-key-selection-title">Users Keys</div>
-            <% foundPlantKeys.forEach(keyObj=>{ %>
-                <div style="margin-bottom: 25px;">
-                    <div id="group-title">
-                        <%= keyObj['key']['name']%>
-                    </div>
-                    <div id="family-key-selection-container">
-                        <!-- This will go through the /keys/:id route to build the key -->
-                        <a href="/plants/keys/<%=keyObj._id%>?type=id">
-                            <div>
-                                <%=keyObj['key']['name']%>
-                            </div>
-                        </a>
-                    </div>
-                
-                </div>
-                <div></div>
-            <% }); %>
-        </div>
-    </div>
+        </section>
+
+        <section class="key-category-container" id="user-created-key-selection-container">
+            <div class="key-selection-title" id="user-created-key-selection-title">users keys</div>
+            <div class="key-selection-choices">
+                <% foundPlantKeys.forEach(keyObj=>{ %>
+                    <a href="/plants/keys/<%=keyObj._id%>?type=id">
+                        <div class="key-name">
+                            <%=keyObj['key']['name']%>
+                        </div>
+                    </a>
+                <% }); %>
+            </div>
+        </section>
+
+    </main>
 <%- include('../../partials/footer') %>

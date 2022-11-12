@@ -1,48 +1,53 @@
 <%- include('../partials/header') %>
-    <main>
+    <main id="plant-index-container">
+        <div id="filter-container">
+            <div id="filter-button-container">
+                <button id="filter-toggle-button" class="plant-button"><i class="fa fa-filter"></i> filter</button>
 
-        <!-- FILTER PLANTS TO SHOW LESS -->
-        <div id="filter-form-container">
-            <div id="filter-title">filter</div>
-            <form id="filter-form" action="/plants" method="GET">
-                <div id="search-containers">
-                    
-                <%- include('../partials/search-bar',families, filterBarSelectors,
-                                filterValues, 
-                                geni, query) %>
+            <% if(currentUser){ %>
+                <a href="/plants/new">
+                    <button class="plant-button"><i class="fa fa-solid fa-leaf"></i> add</button>
+                </a>
+                <% } %>
+            </div>
 
-        
+  
+            <!-- FILTER PLANTS TO SHOW LESS -->
+            <div id="filter-form-container" class="filter-form-container-hidden">
+                <form id="filter-form" action="/plants" method="GET">
+                    <div id="search-containers">
+                        
+                        <%- include('../partials/search-bar',families, filterBarSelectors,
+                                        filterValues, 
+                                        geni, query) %>
 
-                </div>
-                <input type="submit" name="" id="">
-            </form>
+            
+
+                    </div>
+                    <input type="submit" name="" id="">
+                </form>
+            </div>
         </div>
-        
+
         <!-- Below the search bar is the container showing all the plants in the database,
         or if filters added it will show only plants meeting specifics of the filter  -->
-        <div class="plant-box-container">
+        <div class="plant-box-container" id="plants-container">
             <!-- Go through each plant from the database and apply the box to them -->
             <% plants.forEach(function(plant){ %>
-                <div class="plant-card-container">
-                    <img alt="<%=plant.genus%> <%=plant.species%> Image" class="plant-card-img-top" src="<%=plant.image%>">
-                    <div class="plant-card-body">
-                        <h6 class="card-title">
+                <a href="/plants/<%=plant._id%>" class="plant">
+                    <img class="plant-image" src="<%=plant.imageurl%>" alt="">
+                    <div id="<%=plant.species%>-<%=plant.genus%>-info" class="hidden-plant-info">
+                        <div>
+                            <%=plant.commonname%>
+                        </div>
+                        <div>
                             <%=plant.genus%>
                                 <%=plant.species%>
-                        </h6>
-                        <p style="font-size: 12px;" class="card-title">
-                            <%=plant.commonName%>
-                        </p>
-                        <a href="/plants/<%=plant._id%>" class="read-more-button">read more</a>
+                        </div>
                     </div>
-                </div>
-                <% }); %>
+                </a>
+            <% }); %>
         </div>
-        
-        <% if(currentUser){ %>
-            <a href="/plants/new" class="add-blog">
-                <h5>add plant</h5>
-            </a>
-        <% } %>
     </main>
+  
 <%- include('../partials/footer') %>
