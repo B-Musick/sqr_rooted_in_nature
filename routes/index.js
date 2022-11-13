@@ -12,8 +12,9 @@ router.get('/', (req, res) => {
                         AUTHORIZATION ROUTES
    ========================================================================== */
 
+// Use these variables to pass into the ejs file to dynamically create the register form
 reg_template_vars = {
-    inputs: ['username', 'password', 'email'],
+    inputs: ['username', 'password', 'email','firstname','lastname','iconimage'],
     title: 'become rooted in nature',
     backLink: '/',
     action: '/register',
@@ -21,37 +22,14 @@ reg_template_vars = {
 }
 
 // REGISTER SHOW ROUTE
-// router.get('/register', (req, res) => res.render('register'));
-// REGISTER SHOW ROUTE
 router.get('/register', (req, res) => {
     process.env.NODE_ENV == 'test' ?
         res.json(reg_template_vars) : res.render('partials/form', reg_template_vars)
 });
 
-// // REGISTER NEW ROUTE
-// router.post('/register', (req, res) => {
-//     var newUser = new User({ username: req.body.username });
-
-//     User.register(newUser, req.body.password, (err, user) => {
-//         // This method coming from passportLocalMongoose, password is stored as hash
-//         if (err) {
-//             // Error occurs in registration (or user already exists)
-//             console.log(err);
-//             return res.render('register');
-//         } else {
-//             passport.authenticate('local')(req, res, () => {
-//                 // When user is registered successfully
-//                 console.log("Created user"+req.body.username);
-//                 res.redirect('/plants');
-//             });
-//         }
-//     })
-// });
-
 // REGISTER NEW ROUTE
 router.post('/register', (req, res) => {
-    var newUser = new User({ username: req.body.username, email: req.body.email });
-
+    var newUser = new User({ username: req.body.username, email: req.body.email, firstname: req.body.firstname, lastname: req.body.lastname, iconimage:req.body.iconimage });
 
     User.register(newUser, req.body.password, (err, user) => {
         if (err) {
@@ -68,7 +46,6 @@ router.post('/register', (req, res) => {
         }
     })
 })
-
 
 log_template_vars = {
     inputs: ['username', 'password'],
@@ -105,4 +82,63 @@ router.get('/logout', (req, res)=> {
         res.redirect('/plants');
     });
 });
+
+router.get('/account/:id', (req, res) => {
+    
+    var user_values = { 
+        inputs: ['username', 'email', 'firstname', 'lastname', 'iconimage'],
+        title: 'Account Info',
+        backLink: '/',
+        action: '/account/'+req.params.id,
+        // If there is a query saying edit, then edit the user
+        edit: req.query.edit ? req.query.edit: false
+    };
+
+    process.env.NODE_ENV == 'test' ?
+        res.json(user_values) : res.render('account', user_values)
+});
+
+// UPDATE ROUTE
+router.put('/account/:id', (req, res) => {
+    // Plant.findByIdAndUpdate(req.params.id, req.body.plant, (err, updatedPlant) => {
+    //     err ? res.redirect('plants') : res.redirect('/plants/' + req.params.id);
+    // });
+    var user_values = {
+        inputs: ['username', 'email', 'firstname', 'lastname', 'iconimage'],
+        title: 'Account Info',
+        backLink: '/',
+        action: '/account/' + req.params.id,
+        // If there is a query saying edit, then edit the user
+        edit: req.query.edit ? req.query.edit : false
+    };
+
+    User.findByIdAndUpdate(req.params.id, req.body, (err, foundUser) => {
+        err ? res.redirect('/account/' + req.params.id) :
+            process.env.NODE_ENV == 'test' ?
+                res.json({ foundUser }) :
+                res.redirect('/account/' + req.params.id);
+    });
+});
+
+// // UPDATE ROUTE
+// router.put('/account/:id', (req, res) => {
+//     // Plant.findByIdAndUpdate(req.params.id, req.body.plant, (err, updatedPlant) => {
+//     //     err ? res.redirect('plants') : res.redirect('/plants/' + req.params.id);
+//     // });
+//     var user_values = {
+//         inputs: ['username', 'email', 'firstname', 'lastname', 'iconimage'],
+//         title: 'Account Info',
+//         backLink: '/',
+//         action: '/account/'+req.params.id,
+//         // If there is a query saying edit, then edit the user
+//         edit: req.query.edit ? req.query.edit : false
+//     };
+//     Plant.findByIdAndUpdate(req.params.id, req.body, (err, foundPlant) => {
+//         err ? res.redirect('account') :
+//             process.env.NODE_ENV == 'test' ?
+//                 res.json({ foundPlant }) :
+//                 res.redirect('/plants/' + req.params.id);
+//     });
+// });
+
 module.exports = router;

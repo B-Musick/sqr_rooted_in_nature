@@ -1,0 +1,79 @@
+<%- include('./partials/header') %>
+    <%if(currentUser){%>
+        <!-- If this is a current user, show the form -->
+    <main class="form-page">
+        <!-- Back button -->
+        <%- include ("./partials/back-button",backLink) %>
+
+        <div class="form-container">
+
+            <%if(edit){%>
+                <form action="<%=action%>?_method=PUT" method="POST">
+            <%}else{%>
+                <div>
+            <%}%>
+
+                <div class="form-title-container form-item">
+                    <h4>
+                        <%=title%>
+                    </h4>
+                </div>
+
+                <%if(edit){%>
+                    <!-- If edit then put values as current values -->
+                    <!-- Inputs looped through and created -->
+                    <%inputs.forEach((input,i)=>{%>
+                        <div class="form-item">
+                            <span class="form-item-title">
+                                <%=input%>:
+                            </span>
+                            <!-- Use the first word in the inputs[] array -->
+                            <span><input type="text" name="<%=input.replace(/ +/g,'')%>"
+                                    value="<%=currentUser[input]%>"><br></span>
+                        </div>
+                    <%});%>
+                <%}else{%>
+                    <!-- Inputs looped through and created -->
+                    <%inputs.forEach(input=>{%>
+                        <div class="form-item">
+                            <span class="form-item-title">
+                                <%=input%>:
+                            </span>
+                            <span><input type="text" name="<%=input.replace(/ +/g,'')%>"
+                                    placeholder="<%=currentUser[input]%>" readonly><br></span>
+                        </div>
+                    <%});%>
+                <%}%>
+                <%if(!edit){%>
+                    <a href="/account/<%=currentUser._id%>?edit=true">
+                        <button class="form-item submit-button">Edit Info</button>
+                    </a>
+                <%}else{%>
+                    <button class="form-item submit-button">Submit</button>
+
+                <%}%>
+
+                <%if(edit){%>
+                </form>
+                <%}else{%>
+                </div>
+                <%}%>
+        </div>
+        
+    </main>
+        <!-- If user is signed in -->
+        <p>
+            <%=currentUser.firstname%> <%=currentUser.lastname%>
+        </p>
+        <a id="signed-in-text">
+            <b>
+                <%=currentUser.username%>
+            </b>
+        </a>
+        <p>
+                <%=currentUser.email%>
+        </p>
+   
+        
+    <%}%>
+<%- include('./partials/footer') %>

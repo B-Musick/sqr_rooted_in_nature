@@ -75,7 +75,7 @@
                         <a href="/register" class="">Register</a>
                     <%}else{%>
                         <!-- If user is signed in -->
-                        <a id="signed-in-text"><i class='fas fa-user-circle'></i><b> <%=currentUser.username%></b></a>
+                        <a href="/account/<%=currentUser._id%>" id="signed-in-text"><i class='fas fa-user-circle'></i><b> <%=currentUser.username%></b></a>
                         <a href="/logout" class="">Logout</a>
                     <%}%>
                 </div>

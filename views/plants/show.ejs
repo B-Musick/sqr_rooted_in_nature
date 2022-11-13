@@ -46,7 +46,7 @@
                                                     being viewed, then show the edit, delete buttons -->
                         <% if(currentUser && plant.author.id.equals(currentUser._id)){ %>
                             <!-- If own the plant -->
-                            <a class="comments-delete-button" href="/plants/<%=plant._id%>/edit">EDIT PLANT</a>
+                            <a class="comments-delete-button" href="/plants/<%=plant._id%>/edit">edit</a>
                             <form action="/plants/<%=plant._id%>?_method=DELETE" method="POST">
                                 <input type="submit" class="comments-delete-button" value="DELETE PLANT">
                             </form>

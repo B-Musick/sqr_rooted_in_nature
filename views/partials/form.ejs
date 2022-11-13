@@ -7,7 +7,6 @@ passed should be {inputs,title:' ',backLink:' ',action:' '} -->
         <!-- Back button -->
         <%- include ("./back-button",backLink) %>
 
-
         <div class="form-container">
             <form action="<%=action%>" method="POST">
                 <div class="form-title-container form-item">
@@ -21,7 +20,7 @@ passed should be {inputs,title:' ',backLink:' ',action:' '} -->
                             <div class="form-item">
                                 <span class="form-item-title"><%=input%>:</span>
                                 <!-- Use the first word in the inputs[] array -->
-                                <span><input type="text" name="<%=input.replace(/ +/g,'')%>" value="<%=plant[input.replace(/ +/g,'')]%>"><br></span>
+                                <span><input type="text" name="<%=input.replace(/ +/g,'')%>" value="<%=input.replace(/ +/g,'')%>"><br></span>
                             </div>
                         <%});%>
 

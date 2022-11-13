@@ -1,11 +1,3 @@
-:root {
-    --header-background: rgb(0, 55, 104);
-    --font: #edf5e1;
-    --hover-color: #379683;
-    --page-background: #5cdb95;
-    --login-display-background: #8ee4af;
-}
-
 .form-page {
     height: 100%;
     width: 100%;
