@@ -56,8 +56,12 @@ router.get('/keys', (req, res) => {
 })
 
 router.get('/keys/create', (req, res) => {
+    let template_vars = {
+        backLink: '/'
+
+    }
     // This route allows user to submit a file and a key will be created
-    res.render('plants/keys/create')
+    res.render('plants/keys/create',template_vars)
 });
 
 router.post('/keys', (req,res)=>{

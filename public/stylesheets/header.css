@@ -26,16 +26,14 @@
     background-color: var(--navy-blue);
     width: 100%;
     height: 40px;
-    /* font-family: 'VT323', monospace; */
     font-size: 1em;
+    text-transform: capitalize;
 }
 
 .navbar-links {
     display: flex;
     justify-content: flex-start;
     flex-wrap: wrap;
-    /* height: 40px; */
-
 }
 
 .navbar-item {

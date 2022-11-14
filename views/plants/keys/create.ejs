@@ -1,24 +1,26 @@
 <%- include('../../partials/header') %>
     <!--------------------------- FILE INPUT  ----------------------------->
-    <section id="fileinput" id="outer-container">
-        <div class="container-header"><span>Input JSON file</span></div>
-        <div id="fileinput-inner-container" class="right-inner-container">
-            <div id="fileInput">
-                <!-- Where file is selected, accepts only .csv files -->
-                <input id='fileItem' type="file" accept=".json">
-            </div>
+    <!-- <section id="fileinput" id="outer-container"> -->
+        <main class="form-page">
+            <%- include ("../../partials/back-button",backLink) %>
+
+        <div id="fileinput-inner-container" class="form-container">
+
             <form action="/plants/keys" method="POST">
+                <div class="form-title-container form-item"><span>Input JSON file</span></div>
+                <div class="form-item" id="fileInput">
+                    <!-- Where file is selected, accepts only .csv files -->
+                    <input id='fileItem' type="file" accept=".json">
+                </div>
                 <div class="form-item">
                     <span class="form-item-title"></span>
                     <span><input id="plant-key-input" type="text" name="jsonKey" placeholder="Plant Key JSON"><br></span>
                 </div>
-                <input class="form-item" type="submit" name="submit" id="submit-button">
+         
+                <input class="form-item submit-button" type="submit" name="submit" id="submit-button">
 
             </form>
         </div>
-    </section>
-    <section id="show-json-file-output">
-
-    </section>
+    </main>
     <script src="/scripts/plant_keys/key_creator.js"></script>
 <%- include('../../partials/footer') %>

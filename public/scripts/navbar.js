@@ -85,7 +85,7 @@ let createDropdownItems = (name, items) => {
         // Originally hidden
         let itemNameDiv = document.createElement('div');
         itemNameDiv.setAttribute('class', itemName + ' dropdown-item-hidden');
-        itemNameDiv.textContent = item.toUpperCase(); // Add the text to the div item
+        itemNameDiv.textContent = item; // Add the text to the div item
 
         itemAnchor.appendChild(itemNameDiv); // Append the name to the anchor
         dropdownItems.appendChild(itemAnchor); // Append the item to the dropdownList
